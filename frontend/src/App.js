@@ -1,18 +1,19 @@
 import "./App.css";
-import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import LoginPage from "./pages/LoginPage/LoginPage.js";
-import ProfilePage from "./pages/ProfilePage/ProfilePage";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import UnfoundPage from "./pages/UnfoundPage";
 
 function App() {
   return (
-    <Router>
-      <Link className="nav-link" to="/profile">Course-Table</Link>
-      <h1>asdfasf</h1>
-      {/* <Route path="/signin" exact component={LoginPage} /> */}
-    
-      <Route path="/profile" component={ProfilePage} />
-    </Router>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signin" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route element={<UnfoundPage />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   );
 }
 
