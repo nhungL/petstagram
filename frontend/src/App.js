@@ -1,13 +1,18 @@
 import "./App.css";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import LoginPage from "./pages/LoginPage/LoginPage.js";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import LoginPage from "./pages/LoginPage/LoginPage";
+import UnfoundPage from "./pages/UnfoundPage";
 
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Route path="/signin" exact component={LoginPage} />
-      </Router>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/signin" element={<LoginPage />} />
+          <Route path="/" element={<LoginPage />} />
+          <Route element={<UnfoundPage />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 }
