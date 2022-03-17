@@ -4,6 +4,8 @@ const useStyles = makeStyles((theme) => ({
   background: {
     marginTop: "10vw",
     marginLeft: "10vw",
+    width: "500px",
+    height: "100vh",
   },
   title: {
     fontWeight: "bold",
@@ -27,6 +29,10 @@ const useStyles = makeStyles((theme) => ({
     width: "380px",
     marginTop: "30px",
     fontWeight: "bold",
+    marginBottom: "100px",
   },
+  // card: {
+  //   height: "100vh",
+  // },
 }));
 export default useStyles;
