@@ -96,7 +96,7 @@ const ResponsiveAppBar = () => {
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'pink', display: 'block' }}
+                                sx={{ my: 2, color: '#d04081', display: 'block' }}
                             >
                                 {page}
                             </Button>
