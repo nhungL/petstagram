@@ -1,15 +1,12 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
+  title: {
+    fontWeight: "bold",
+  },
   background: {
-    backgroundColor: "#FFB2A6",
-  },
-  container: {
-    width: "100vw",
-    height: "100hw",
-  },
-  pad: {
-    padding: "0",
+    marginTop: "5vw",
+    marginLeft: "5vw",
   },
 }));
 export default useStyles;
