@@ -1,12 +1,17 @@
 import React from "react";
 import useStyles from "./Style";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
+import SignUp from "../../components/SignUp/SignUp";
 
 export default function LoginPage() {
   const classes = useStyles();
   return (
     <div>
-      <Typography>LOGO</Typography>
+      <Grid container spacing={0} direction="row">
+        <Grid item>
+          <SignUp />
+        </Grid>
+      </Grid>
     </div>
   );
 }
