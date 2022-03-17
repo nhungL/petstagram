@@ -1,4 +1,4 @@
-import { Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import useStyles from "./Style";
 import React from "react";
 
@@ -45,6 +45,11 @@ export default function SignUp() {
         </Grid>
         <Grid item align="left">
           <TextField size="small" className={classes.inputBox} />
+        </Grid>
+        <Grid item align="left">
+          <Button variant="contained" size="large" className={classes.buttonS}>
+            Sign Up
+          </Button>
         </Grid>
       </Grid>
     </div>

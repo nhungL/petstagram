@@ -22,5 +22,11 @@ const useStyles = makeStyles((theme) => ({
     width: "380px",
     marginBottom: "20px",
   },
+  buttonS: {
+    backgroundColor: "#FFB2A6",
+    width: "380px",
+    marginTop: "30px",
+    fontWeight: "bold",
+  },
 }));
 export default useStyles;
