@@ -1,78 +1,70 @@
-import React, { Component } from "react";
-import { Typography } from "@mui/material";
-// import AppBar from '@mui/material/AppBar';
+import React from "react";
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import IconButton from '@mui/material/IconButton';
-import Menu from '@mui/material/Menu';
-import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Avatar from '@mui/material/Avatar';
-// import Button from '@mui/material/Button';
-// import Tooltip from '@mui/material/Tooltip';
-import Item from '@mui/material/MenuItem';
-import Grid from '@material-ui/core/Grid'
-import { makeStyles } from '@material-ui/core/styles';
-import { Theme, createTheme } from '@mui/system';
-import { withStyles } from "@mui/styles";
-import styles from './styles';
-import { ClassNames } from "@emotion/react";
-import clsx from "clsx";
-import { createStyles } from '@mui/styles';
+import useStyles from "./Style";
+import { Grid, Typography } from "@mui/material";
+import Chat from "../../components/Chat/Chat";
+import Post from "../../components/Post/Post";
+import Feed from "../../components/Feed/Feed";
 
-// const useStyles = makeStyles({
-//     root: {
-//         bgcolor: '#E0DEDE',
-//         color: (props) => props.color,
-//     },
-// });
-
-function ProfilePage(props) {
-    // const classes = useStyles(props);
+export default function ProfilePage() {
+    const classes = useStyles();
     return (
-        <Box bgcolor='#E0DEDE' >
+        <div className={classes.pad}>
             <Container
-                maxWidth="lg"
-                sx={{ mt: '10px', width: '100%', height: '100%', }}
-                style={{ backgroundColor: 'pink' }}>
+                className={classes.background}>
 
-                <Grid container justify="center" alignItems="center">
-                    <Avatar src="/static/images/avatar/2.jpg" sx={{ mt: "20px", width: 100, height: 100 }}>NL</Avatar>
+                <Grid container spacing={0} justifyContent="center">
+                    <Avatar src="/static/images/avatar/2.jpg" className={classes.avatar}>NL</Avatar>
                 </Grid>
                 <h3>Nhung Luong</h3>
                 <h5># of friends here</h5>
 
                 <Grid container direction="row" spacing={2}>
-                    <Grid item xs={12} md={3} style={{ background: 'white' }} >
+                    <Grid item sm={12} md={3} className={classes.item}>
                         <div>
-                            <h3>Introduction</h3>
-                                <p>
-                                    Name:
-                                    Age:
-                                    Location:
-                                    Hobbies:
-                                </p>
+                            <Typography variant="h6" align="left" className={classes.title}>
+                                Introduction
+                            </Typography>
+                            <Typography className={classes.subtitle} align="left">
+                                Tell others more about you. (nickname, hobbies, age, location, ...)
+                            </Typography>
+                            <Typography className={classes.subtitle} align="left">
+                                Join since ...
+                            </Typography>
+                            
+
 
                         </div>
                     </Grid>
 
-                    <Grid item container direction="column" xs={12} md={6}>
-                        <Grid item xs style={{ background: 'white'}}>
-                            <div >Post</div>
+                    <Grid container direction="column" sm={12} md={6} >
+                        <Grid item xs className={classes.item}>
+                            <div ><Typography variant="h6" align="left" className={classes.title}>
+                                Post
+                            </Typography>
+                                <Post />
+                            </div>
                         </Grid>
-                        <Grid item xs style={{ background: 'white'}}>
+                        <Grid item xs className={classes.item}>
                             <div >
-                                My Feed
+                                <Typography variant="h6" align="left" className={classes.title}>
+                                    My Feeds
+                                </Typography>
+                                <Feed />
                             </div>
                         </Grid>
                     </Grid>
 
-                    <Grid item xs={12} md={3} style={{ background: 'white' }}>
-                        <div >Chat</div>
+                    <Grid item sm={12} md={3} className={classes.item}>
+                        <Typography variant="h6" align="left" className={classes.title}>
+                            Messages
+                        </Typography>
+                        <Chat />
                     </Grid>
                 </Grid>
             </Container>
-        </Box>
+        </div>
     );
 }
-export default (ProfilePage);
