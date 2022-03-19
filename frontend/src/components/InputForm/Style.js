@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "30px",
   },
   inputBox: {
-    width: "250px",
+    width: "200px",
     marginBottom: "20px",
   },
   email: {
@@ -39,6 +39,15 @@ const useStyles = makeStyles((theme) => ({
   background1: {
     marginLeft: "30px",
     marginRight: "30px",
+  },
+  subbutton: {
+    color: "white",
+    fontWeight: "bold",
+    backgroundColor: "#FFB2A6",
+    width: "180px",
+    marginRight: "30px",
+    marginTop: "30px",
+    marginBottom: "50px",
   },
 }));
 export default useStyles;

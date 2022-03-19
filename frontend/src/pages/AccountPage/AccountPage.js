@@ -1,7 +1,8 @@
 import React from "react";
 import useStyles from "./Style";
-import { Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import UserDetail from "../../components/UserDetail/UserDetail";
+import AvatarForm from "../../components/AvatarForm/AvatarForm";
 export default function AccountPage() {
   const classes = useStyles();
   return (
@@ -9,7 +10,14 @@ export default function AccountPage() {
       <Typography variant="h4" align="left" className={classes.title}>
         Account
       </Typography>
-      <UserDetail />
+      <Grid container direction="row">
+        <Grid item>
+          <UserDetail />
+        </Grid>
+        <Grid item>
+          <AvatarForm />
+        </Grid>
+      </Grid>
     </div>
   );
 }

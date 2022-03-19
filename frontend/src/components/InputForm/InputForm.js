@@ -1,4 +1,4 @@
-import { Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
 import useStyles from "./Style";
 
@@ -94,6 +94,14 @@ export default function InputForm() {
             </Grid>
           </div>
         </Grid>
+      </Grid>
+      <Grid container direction="row">
+        <Button variant="contained" className={classes.subbutton}>
+          SAVE
+        </Button>
+        <Button variant="contained" className={classes.subbutton}>
+          CANCEL
+        </Button>
       </Grid>
     </div>
   );
