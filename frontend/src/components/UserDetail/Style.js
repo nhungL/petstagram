@@ -1,12 +1,13 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
-  title: {
-    fontWeight: "bold",
+  line: {
+    backgroundColor: "black",
   },
-  background: {
-    marginTop: "5vw",
-    marginLeft: "5vw",
+  title: {
+    marginTop: "20px",
+    marginBottom: "20px",
+    marginLeft: "30px",
   },
 }));
 export default useStyles;
