@@ -11,7 +11,7 @@ export default function AccountPage() {
         Account
       </Typography>
       <Grid container direction="row">
-        <Grid item>
+        <Grid item className={classes.layout}>
           <UserDetail />
         </Grid>
         <Grid item>

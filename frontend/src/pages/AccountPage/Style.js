@@ -9,5 +9,9 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "5vw",
     marginLeft: "5vw",
   },
+  layout: {
+    marginRight: "40px",
+    marginBottom: "40px",
+  },
 }));
 export default useStyles;
