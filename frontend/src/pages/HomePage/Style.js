@@ -10,40 +10,31 @@ const useStyles = makeStyles((theme) => ({
     height: 100,
   },
   title: {
+    display: "flex",
     fontWeight: "bold",
     marginTop: "20px",
     marginLeft: "20px",
     marginBottom: "10px",
   },
+  titleWrapper: {
+    marginTop: "20px",
+    marginBottom: "20px",
+  },
   subtitle: {
     color: "#C4C4C4",
     marginLeft: "20px",
-    marginRight: "20px",
     marginBottom: "40px",
     fontSize: 12,
   },
   container: {
-    width: "100vw",
-    height: "100hw",
+    width: "100%",
+    height: "100%",
   },
   item: {
     backgroundColor: "#FFFFFF",
     width: "95%",
     borderRadius: 20,
     boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
-  },
-  introdata: {
-    display: 'flex',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    marginLeft: "auto",
-    marginRight: "20px",
-  },
-  circleicon: {
-    marginRight: "20px",
-  },
-  pad: {
-    padding: "0",
   },
 }));
 export default useStyles;
