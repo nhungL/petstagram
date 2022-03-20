@@ -1,32 +1,37 @@
-import { createTheme } from "@material-ui/core/styles";
-const myTheme = createTheme({
-  root: {
-    display: "flex",
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles((theme) => ({
+  background: {
+    backgroundColor: "#F0F0F0",
   },
-  palette: {
-    primary: {
-      main: "#1987c9",
-    },
+  avatar: {
+    marginTop: "20px",
+    width: 100,
+    height: 100,
   },
-  typography: {
-    fontFamily: "Playfair Display",
+  title: {
+    fontWeight: "bold",
+    marginTop: "20px",
+    marginLeft: "20px",
+    marginBottom: "10px",
+  },
+  subtitle: {
+    color: "#C4C4C4",
+    marginLeft: "20px",
+    marginBottom: "40px",
     fontSize: 12,
-    h1: {
-      fontSize: 30,
-      fontWeight: 700,
-    },
-    h2: {
-      fontSize: 20,
-      fontWeight: 700,
-      paddingBottom: 20,
-    },
   },
-  overrides: {
-    MuiAppBar: {
-      colorPrimary: {
-        backgroundColor: "#662E9B",
-      },
-    },
+  container: {
+    width: "100vw",
+    height: "100hw",
   },
-});
-export default createTheme(myTheme);
+  item: {
+    backgroundColor: 'white',
+    border: "5px solid #F0F0F0",
+    borderRadius: 20,
+  },
+  pad: {
+    padding: "0",
+  },
+}));
+export default useStyles;
