@@ -13,6 +13,7 @@ export default function Post() {
           placeholder="How's your day?"
           variant="outlined"
           size="small"
+          overflowWrap="break-word" 
           className={classes.inputBox}
           InputProps={{
             classes: {
