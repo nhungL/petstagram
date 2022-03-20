@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   subtitle: {
     color: "#C4C4C4",
     marginLeft: "20px",
+    marginRight: "20px",
     marginBottom: "40px",
     fontSize: 12,
   },
@@ -29,6 +30,16 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     border: "5px solid #F0F0F0",
     borderRadius: 20,
+  },
+  introdata: {
+    display: 'flex',
+    alignItems: 'center',
+    flexWrap: 'wrap',
+    marginLeft: "auto",
+    marginRight: "20px",
+  },
+  circleicon: {
+    marginRight: "20px",
   },
   pad: {
     padding: "0",

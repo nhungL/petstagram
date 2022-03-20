@@ -35,7 +35,7 @@ const ResponsiveAppBar = () => {
     };
 
     return (
-        <AppBar position="static" style={{backgroundColor:"white"}}>
+        <AppBar position="static" style={{ backgroundColor: "white" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Typography
@@ -89,14 +89,14 @@ const ResponsiveAppBar = () => {
                         component="div"
                         sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
                     >
-                        <img src="Logo.png" alt="logo" width="350" height="auto"/>
+                        <img src="Logo.png" alt="logo" width="350" height="auto" />
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
                         {pages.map((page) => (
                             <Button
                                 key={page}
                                 onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: '#d04081', display: 'block' }}
+                                sx={{ my: 2, marginLeft: "20px", fontWeight: "bold", color: '#FFB2A6', display: 'block' }}
                             >
                                 {page}
                             </Button>
