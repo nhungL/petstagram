@@ -5,6 +5,7 @@ import ProfilePage from "./pages/ProfilePage/ProfilePage";
 import UnfoundPage from "./pages/UnfoundPage";
 import AccountPage from "./pages/AccountPage/AccountPage";
 import ResponsiveAppBar from "./components/ResponsiveAppBar";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/account" element={<AccountPage />} />
           <Route path="/signin" element={<LoginPage />} />
+          <Route path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route element={<UnfoundPage />} />
         </Routes>

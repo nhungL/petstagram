@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "20px",
   },
   inputBox: {
-    width: "450px",
+    width: "80%",
     marginTop: "20px",
     marginLeft: "20px",
     marginRight: "20px",
