@@ -9,41 +9,19 @@ const useStyles = makeStyles((theme) => ({
     width: 100,
     height: 100,
   },
-  title: {
-    fontWeight: "bold",
-    marginTop: "20px",
-    marginLeft: "20px",
-    marginBottom: "10px",
-  },
-  subtitle: {
-    color: "#C4C4C4",
-    marginLeft: "20px",
-    marginRight: "20px",
-    marginBottom: "40px",
-    fontSize: 12,
-  },
   container: {
     width: "100vw",
     height: "100hw",
   },
-  item: {
+  post: {
     backgroundColor: "#FFFFFF",
     width: "95%",
-    borderRadius: 20,
+    borderRadius: "20px",
     boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
-  },
-  introdata: {
-    display: 'flex',
-    alignItems: 'center',
-    flexWrap: 'wrap',
-    marginLeft: "auto",
-    marginRight: "20px",
-  },
-  circleicon: {
-    marginRight: "20px",
+    margin: "15px 0",
   },
   pad: {
-    padding: "0",
+    padding: "15px",
   },
 }));
 export default useStyles;

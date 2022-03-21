@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     width: "95%",
     borderRadius: "20px",
     boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
-    margin: "30px 0",
+    margin: "15px",
   },
 
   postWrapper: {

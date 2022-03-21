@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: "20px",
     boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
     minWidth: "250px",
+    margin: "15px",
   },
   chatWrapper: {
     padding: "20px",

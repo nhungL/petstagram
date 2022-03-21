@@ -1,15 +1,21 @@
 import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
-  avatar: {
-    marginTop: "20px",
-    marginLeft: "20px",
+  top: {
+    display: "flex",
+    alignItems: "center",
   },
   inputBox: {
-    width: "80%",
-    marginTop: "20px",
-    marginLeft: "20px",
-    marginRight: "20px",
+    marginLeft: "5px",
+    width: "100%",
+    
+  },
+  post: {
+   width: "95%",
+     backgroundColor: "#FFFFFF",
+    borderRadius: "20px",
+    boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
+    margin: "15px",
   },
   button: {
     backgroundColor: "#FFB2A6",
@@ -26,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   focused: {},
   notchedOutline: {},
   pad: {
-    padding: "0",
+    padding: "15px",
   },
 }));
 export default useStyles;
