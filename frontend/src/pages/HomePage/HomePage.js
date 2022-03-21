@@ -1,6 +1,6 @@
-import { Container, Grid, Typography } from "@mui/material";
 import React from "react";
 import useStyles from "./Style";
+import { Container, Grid, Typography } from "@mui/material";
 import Post from "../../components/Post/Post";
 import Feed from "../../components/Feed/Feed";
 import Chat from "../../components/Chat/Chat";
