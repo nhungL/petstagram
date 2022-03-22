@@ -11,7 +11,7 @@ export default function UserDetail() {
         <Typography variant="h6" align="left" className={classes.title}>
           USER DETAILS
         </Typography>
-        <Divider className={classes.line}></Divider>
+        <Divider></Divider>
         <InputForm />
       </Card>
     </div>

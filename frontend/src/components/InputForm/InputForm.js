@@ -40,15 +40,6 @@ export default function InputForm() {
                   className={classes.inputBox}
                 ></TextField>
               </Grid>
-              <Grid container direction="row">
-                <Typography className={`${classes.pw} ${classes.inputText}`}>
-                  Password
-                </Typography>
-                <TextField
-                  size="small"
-                  className={classes.inputBox}
-                ></TextField>
-              </Grid>
             </Grid>
           </Grid>
         </Grid>

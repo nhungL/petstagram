@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     color: "black",
     backgroundColor: "#C4C4C4",
     fontWeight: "bold",
-    marginBottom: "64px",
+    marginBottom: "38px",
   },
   background: {
     marginRight: "30px",
