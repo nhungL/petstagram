@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "5vw",
   },
   layout: {
-    marginRight: "40px",
+    marginRight: "60px",
     marginBottom: "40px",
   },
   avar: {
