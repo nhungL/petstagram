@@ -1,9 +1,15 @@
-import { Button, Card, Grid, TextField, Typography } from "@mui/material";
+import { Button, Grid, TextField, Typography } from "@mui/material";
 import useStyles from "./Style";
+import { useNavigate } from "react-router-dom";
 import React from "react";
 
 export default function SignUp() {
   const classes = useStyles();
+  const navigate = useNavigate();
+  const btnOnClick = (link) => {
+    navigate(link);
+  };
+
   return (
     <div className={classes.background}>
       <Grid
@@ -47,7 +53,12 @@ export default function SignUp() {
           <TextField size="small" className={classes.inputBox} />
         </Grid>
         <Grid item align="left">
-          <Button variant="contained" size="large" className={classes.buttonS}>
+          <Button
+            variant="contained"
+            size="large"
+            className={classes.buttonS}
+            onClick={() => btnOnClick("account")}
+          >
             Sign Up
           </Button>
         </Grid>
