@@ -7,14 +7,19 @@ export default function AccountPage() {
   const classes = useStyles();
   return (
     <div className={classes.background}>
-      <Typography variant="h4" align="left" className={classes.title}>
-        Account
-      </Typography>
-      <Grid container direction="row">
+      <Grid
+        container
+        direction="row"
+        justifyContent="center"
+        alignItems="center"
+      >
         <Grid item className={classes.layout}>
+          <Typography variant="h4" align="left" className={classes.title}>
+            Account
+          </Typography>
           <UserDetail />
         </Grid>
-        <Grid item>
+        <Grid item className={classes.avar}>
           <AvatarForm />
         </Grid>
       </Grid>

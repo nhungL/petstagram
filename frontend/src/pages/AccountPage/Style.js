@@ -13,5 +13,10 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "40px",
     marginBottom: "40px",
   },
+  avar: {
+    marginRight: "40px",
+    marginBottom: "40px",
+    marginTop: "65px",
+  },
 }));
 export default useStyles;
