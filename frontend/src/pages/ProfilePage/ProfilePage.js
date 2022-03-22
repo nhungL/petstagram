@@ -1,7 +1,7 @@
 import React from "react";
 import useStyles from "./Style";
-import { Container, Avatar, Grid, Typography } from "@mui/material";
-import CircleIcon from "@mui/icons-material/Circle";
+import { AvatarGroup, Container, Avatar, Grid } from "@mui/material";
+import Introduction from "../../components/Introduction/Introduction";
 import Chat from "../../components/Chat/Chat";
 import Post from "../../components/Post/Post";
 import Feed from "../../components/Feed/Feed";
@@ -12,99 +12,36 @@ export default function ProfilePage() {
     <div className={classes.background}>
       <Container className={classes.background}>
         <Grid container spacing={0} justifyContent="center">
-          <Avatar src="/static/images/avatar/2.jpg" className={classes.avatar}>
+          <Avatar src="not-found-image.png" className={classes.avatar}>
             NL
           </Avatar>
         </Grid>
         <h3>Nhung Luong</h3>
-        <h5># of friends here</h5>
+        <div style={{ justifyContent: "center", display: "flex" }}>
+          <AvatarGroup max={4}>
+            <Avatar alt="Thuy Le" src="YourPicturePath" />
+            <Avatar alt="Nhung Luong" src="YourPicturePath" />
+            <Avatar alt="Truc Phan" src="YourPicturePath" />
+            <Avatar alt="Gourav" src="YourPicturePath" />
+            <Avatar alt="Harrier" src="YourPicturePath" />
+          </AvatarGroup>
+        </div>
 
         <Grid container direction="row" spacing={0}>
-          <Grid
-            item
-            sm={true}
-            className={classes.item}
-            style={{ marginRight: "30px" }}
-          >
-            <Typography variant="h6" align="left" className={classes.title}>
-              Intro
-            </Typography>
-            <Typography className={classes.subtitle} align="left">
-              Tell others more about you. (nickname, hobbies, age, location,
-              etc.)
-            </Typography>
-            <Typography className={classes.subtitle} align="left">
-              Join since ...
-            </Typography>
-
-            <Typography sx={{ marginLeft: "20px" }}>
-              <Typography
-                className={classes.introdata}
-                align="left"
-                marginBottom="10px"
-              >
-                <CircleIcon
-                  className={classes.circleicon}
-                  sx={{ color: "red" }}
-                />
-                <span>Posts</span>
-                <Typography className={classes.introdata}>#posts</Typography>
-              </Typography>
-
-              <Typography
-                className={classes.introdata}
-                align="left"
-                marginBottom="10px"
-              >
-                <CircleIcon
-                  className={classes.circleicon}
-                  sx={{ color: "pink" }}
-                />
-                <span>Following</span>
-                <Typography className={classes.introdata}>
-                  #following
-                </Typography>
-              </Typography>
-
-              <Typography
-                className={classes.introdata}
-                align="left"
-                marginBottom="10px"
-              >
-                <CircleIcon
-                  className={classes.circleicon}
-                  sx={{ color: "green" }}
-                />
-                <span>Followers</span>
-                <Typography className={classes.introdata}>
-                  #followers
-                </Typography>
-              </Typography>
-
-              <Typography
-                className={classes.introdata}
-                align="left"
-                marginBottom="10px"
-              >
-                <CircleIcon
-                  className={classes.circleicon}
-                  sx={{ color: "yellow" }}
-                />
-                <span>Likes</span>
-                <Typography className={classes.introdata}>#likes</Typography>
-              </Typography>
-            </Typography>
+          <Grid item xs={12} md={3}>
+            <Introduction />
           </Grid>
 
-          <Grid container direction="column" sm={12} md={6}>
-            <Grid item xs className={classes.item}>
+          <Grid container direction="column" xs={12} md={5.5}>
+            <Grid item>
               <Post />
             </Grid>
-            <Grid>
+            <Grid item>
               <Feed />
             </Grid>
           </Grid>
-          <Grid>
+
+          <Grid item xs={12} md={3}>
             <Chat />
           </Grid>
         </Grid>
