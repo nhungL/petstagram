@@ -10,11 +10,11 @@ export default function AccountPage() {
       <Typography variant="h4" align="left" className={classes.title}>
         Account
       </Typography>
-      <Grid container direction="row">
+      <Grid container direction="row" justifyContent="center">
         <Grid item className={classes.layout}>
           <UserDetail />
         </Grid>
-        <Grid item>
+        <Grid item className={classes.layout}>
           <AvatarForm />
         </Grid>
       </Grid>

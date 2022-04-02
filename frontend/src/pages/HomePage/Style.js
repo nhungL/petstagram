@@ -30,11 +30,11 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
   },
-  item: {
-    backgroundColor: "#FFFFFF",
-    width: "95%",
-    borderRadius: 20,
-    boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
-  },
+  // item: {
+  //   backgroundColor: "#FFFFFF",
+  //   width: "95%",
+  //   borderRadius: 20,
+  //   boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
+  // },
 }));
 export default useStyles;

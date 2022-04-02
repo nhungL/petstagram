@@ -23,7 +23,7 @@ const HomePage = () => {
         </div>
         <Grid container direction="row">
           <Grid container direction="column" sm={true}>
-            <Grid item xs className={classes.item}>
+            <Grid>
               <Post />
             </Grid>
             <Grid>
