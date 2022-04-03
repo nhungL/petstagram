@@ -1,10 +1,12 @@
 import React from "react";
+import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
 import useStyles from "./Style";
 
 export default function AboutUsPage() {
   const classes = useStyles();
   return (
     <div className={classes.background}>
+      <AppBarContent />
       <h1 className={classes.pageTitle}>About Us</h1>
       <p className={classes.introText}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras dictum
