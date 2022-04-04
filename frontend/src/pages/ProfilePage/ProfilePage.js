@@ -5,12 +5,14 @@ import Introduction from "../../components/Introduction/Introduction";
 import Chat from "../../components/Chat/Chat";
 import Post from "../../components/Post/Post";
 import Feed from "../../components/Feed/Feed";
+import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
 
 export default function ProfilePage() {
   const classes = useStyles();
   return (
     <div className={classes.background}>
-      <Container className={classes.background}>
+      <AppBarContent />
+      <Container>
         <Grid container spacing={0} justifyContent="center">
           <Avatar src="not-found-image.png" className={classes.avatar}>
             NL

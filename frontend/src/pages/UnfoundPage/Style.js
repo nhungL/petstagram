@@ -6,7 +6,7 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: "column",
     backgroundColor: "#F0F0F0",
     alignItems: "center",
-    minHeight: "90vh",
+    minHeight: "100vh",
   },
   notFoundImage: {
     width: "500px",
