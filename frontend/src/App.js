@@ -48,7 +48,7 @@ export default App;
 //         console.warn(result);
 //         if (result) {
 //             alert("Data saved successfully");
-//             setEmail("");
+//             setEmail(""); 
 //             setName("");
 //         }
 //     }
