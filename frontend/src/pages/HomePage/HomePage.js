@@ -4,18 +4,14 @@ import { Container, Grid, Typography } from "@mui/material";
 import Post from "../../components/Post/Post";
 import Feed from "../../components/Feed/Feed";
 import Chat from "../../components/Chat/Chat";
+import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
 
 const HomePage = () => {
   const classes = useStyles();
   return (
-    <div
-      className={classes.background}
-      style={{
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
-      <Container style={{ display: "flex", flexDirection: "column" }}>
+    <div className={classes.background}>
+      <AppBarContent />
+      <Container className={classes.container}>
         <div className={classes.titleWrapper}>
           <Typography variant="h6" className={classes.title}>
             News Feed
