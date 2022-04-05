@@ -31,15 +31,7 @@ export default function Introduction() {
 
                     <Typography className={classes.introdata}>
                         <CircleIcon className={classes.circleicon} sx={{ color: "pink" }} />
-                        <span>Following</span>
-                        <Typography className={classes.introdata}>
-                            ###
-                        </Typography>
-                    </Typography>
-
-                    <Typography className={classes.introdata}>
-                        <CircleIcon className={classes.circleicon} sx={{ color: "green" }} />
-                        <span>Followers</span>
+                        <span>Friends</span>
                         <Typography className={classes.introdata}>
                             ###
                         </Typography>

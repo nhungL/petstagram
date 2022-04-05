@@ -8,11 +8,10 @@ const useStyles = makeStyles((theme) => ({
   inputBox: {
     marginLeft: "5px",
     width: "100%",
-    
   },
   post: {
-   width: "95%",
-     backgroundColor: "#FFFFFF",
+    width: "95%",
+    backgroundColor: "#FFFFFF",
     borderRadius: "20px",
     boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
     margin: "15px",
