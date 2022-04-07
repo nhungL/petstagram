@@ -7,8 +7,8 @@ import AccountPage from "./pages/AccountPage/AccountPage";
 import ResponsiveAppBar from "./components/ResponsiveAppBar/ResponsiveAppBar";
 import HomePage from "./pages/HomePage/HomePage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
-import SettingPage from "./pages/SettingPage/SettingPage";
 import MapPage from "./pages/MapPage/MapPage";
+import SettingPage from "./pages/SettingPage/SettingPage";
 
 function App() {
   return (
@@ -22,8 +22,8 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
-          <Route path="/setting" element={<SettingPage />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/settings" element={<SettingPage />} />
           <Route path="*" element={<UnfoundPage />} />
         </Routes>
       </BrowserRouter>
@@ -32,3 +32,4 @@ function App() {
 }
 
 export default App;
+
