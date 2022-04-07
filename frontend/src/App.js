@@ -8,6 +8,7 @@ import ResponsiveAppBar from "./components/ResponsiveAppBar/ResponsiveAppBar";
 import HomePage from "./pages/HomePage/HomePage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import MapPage from "./pages/MapPage/MapPage";
+import SettingPage from "./pages/SettingPage/SettingPage";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/settings" element={<SettingPage />} />
           <Route path="*" element={<UnfoundPage />} />
         </Routes>
       </BrowserRouter>
