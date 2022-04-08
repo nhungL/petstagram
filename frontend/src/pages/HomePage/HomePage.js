@@ -18,7 +18,7 @@ const HomePage = () => {
           </Typography>
         </div>
         <Grid container direction="row">
-          <Grid container direction="column" sm={true}>
+          <Grid container direction="column" sm>
             <Grid>
               <Post />
             </Grid>
