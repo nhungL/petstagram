@@ -2,17 +2,15 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema(
     {
-        userfirstname: { type: String, required: true },
-        userlastname: { type: String, required: true },
+        firstname: { type: String, required: true },
+        lastname: { type: String, required: true },
         email: { type: String, required: true, unique: true },
         password: { type: String, required: true },
         isAdmin: { type: Boolean, default: false, required: true },
-        pet: [
-            {
-                type: mongoose.Schema.Types.ObjectId,
-                ref: "Pet"
-            }
-        ],
+        avatar: { type: File, required: false },
+        petname: { type: String, required: true },
+        age: { type: String, required: false },
+        species: { type: String, required: false },
         post: [
             {
                 type: mongoose.Schema.Types.ObjectId,
