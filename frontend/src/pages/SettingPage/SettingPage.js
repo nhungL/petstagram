@@ -1,4 +1,5 @@
-import { React, useState } from "react";
+
+import { React, useState} from "react";
 import useStyles from "./Style";
 import { Container, Divider, Grid, Typography, Button } from "@mui/material";
 import AccountPage from "../AccountPage/AccountPage";
@@ -11,8 +12,6 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import PeopleIcon from '@mui/icons-material/People';
 import HelpIcon from '@mui/icons-material/Help';
 import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
-
-
 
 const SettingPage = () => {
     const classes = useStyles();
