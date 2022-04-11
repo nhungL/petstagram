@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import MapPage from "./pages/MapPage/MapPage";
+import SignInPage from "./pages/SignInPage/SignInPage";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<LoginPage />} />
           <Route path="/account" element={<AccountPage />} />
-          <Route path="/signin" element={<LoginPage />} />
+          <Route path="/signin" element={<SignInPage />} />
           <Route path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
