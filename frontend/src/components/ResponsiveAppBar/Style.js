@@ -10,5 +10,8 @@ const useStyles = makeStyles((theme) => ({
   menuItem: {
     color: "black",
   },
+  link: {
+    textDecoration: "none",
+  },
 }));
 export default useStyles;

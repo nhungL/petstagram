@@ -1,15 +1,15 @@
-import React from "react";
-import useStyles from "./Style";
 import { Grid } from "@mui/material";
-import SignUp from "../../components/SignUp/SignUp";
+import React from "react";
+import SignIn from "../../components/SignIn/SignIn";
+import useStyles from "./Style";
 
-export default function LoginPage() {
+export default function SignInPage() {
   const classes = useStyles();
   return (
     <div className={classes.pad}>
       <Grid container spacing={0} direction="row">
         <Grid item sm={12} md={6}>
-          <SignUp />
+          <SignIn />
         </Grid>
         <Grid item className={classes.background} sm={12} md={6}>
           <div></div>

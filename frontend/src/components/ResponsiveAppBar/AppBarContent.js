@@ -12,10 +12,17 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signout } from "../../actions/logOut";
 
 export default function AppBarContent() {
   const classes = useStyles();
   const [openSettings, setOpenSettings] = useState(false);
+
+  const dispatch = useDispatch();
+  const signoutHandler = () => {
+    dispatch(signout());
+  };
   return (
     <AppBar position="static" className={classes.appbar}>
       <Container maxWidth="xl">
@@ -116,16 +123,16 @@ export default function AppBarContent() {
                 </MenuItem>
               </Link>
 
-              <MenuItem
-                key="logout"
-                onClick={() => {
-                  alert("TODO: log out");
-                  /* TODO: log out */
-                }}
-              >
-                <Typography textAlign="center" className={classes.menuItem}>
-                  Logout
-                </Typography>
+              <MenuItem key="logout">
+                <Link
+                  to="/signin"
+                  onClick={signoutHandler}
+                  className={classes.link}
+                >
+                  <Typography textAlign="center" className={classes.menuItem}>
+                    Logout
+                  </Typography>
+                </Link>
               </MenuItem>
             </Menu>
           </Box>

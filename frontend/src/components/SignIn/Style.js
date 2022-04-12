@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     fontWeight: "bold",
-    marginBottom: "10px",
+    marginBottom: "40px",
   },
   subtitle: {
     color: "#C4C4C4",
@@ -21,22 +21,26 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "15px",
   },
   inputBox: {
-    width: "380px",
+    width: "410px",
     marginBottom: "20px",
   },
   buttonS: {
     backgroundColor: "#FFB2A6",
-    width: "380px",
+    width: "410px",
     marginTop: "30px",
     fontWeight: "bold",
-    marginBottom: "20px",
+    marginBottom: "30px",
   },
   link: {
     textDecoration: "none",
   },
-  haveacc: {
+  newUser: {
     color: "#949090",
-    marginLeft: "130px",
+    marginLeft: "160px",
+  },
+  alert: {
+    width: "380px",
+    marginBottom: "30px",
   },
 }));
 export default useStyles;
