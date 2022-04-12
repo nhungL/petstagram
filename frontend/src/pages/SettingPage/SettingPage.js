@@ -1,3 +1,4 @@
+
 import { React, useState} from "react";
 import useStyles from "./Style";
 import { Container, Divider, Grid, Typography, Button } from "@mui/material";
@@ -10,7 +11,7 @@ import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import PeopleIcon from '@mui/icons-material/People';
 import HelpIcon from '@mui/icons-material/Help';
-
+import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
 
 const SettingPage = () => {
     const classes = useStyles();
@@ -20,64 +21,67 @@ const SettingPage = () => {
     const [help, setShowHelp] = useState(false);
 
     return (
-        <div
-            style={{
-                display: "flex",
-                flexDirection: "column",
-            }}
-        >
-            <Container >
-                <Grid item>
-                    <Typography align="left" className={classes.alignItem}>
-                        {/* <SettingsIcon className={classes.icon}/> */}
-                        <span className={classes.title}> Settings </span>
-                    </Typography>
-                </Grid>
+        <div className={classes.background}>
+            <AppBarContent />
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                }}
+            >
+                <Container >
+                    <Grid item>
+                        <Typography align="left" className={classes.alignItem}>
+                            {/* <SettingsIcon className={classes.icon}/> */}
+                            <span className={classes.title}> Settings </span>
+                        </Typography>
+                    </Grid>
 
-                <Grid container direction="column" sm={8} alignContent="center" style={{maxWidth:"None"}} >
-                    <Grid item style={{ marginTop: "20px" }} className={classes.item}>
-                        <Typography>
-                            <ManageAccountsIcon className={classes.iconSetting}/>
-                            <Divider/>
-                            <Button className={classes.button} onClick={() => setShowAccount(prev => !prev)}>Account</Button>
-                            {account &&
-                                <AccountPage />
-                            }
-                        </Typography>
+                    <Grid container direction="column" sm={8} alignContent="center" style={{ maxWidth: "None" }} >
+                        <Grid item style={{ marginTop: "20px" }} className={classes.item}>
+                            <Typography>
+                                <ManageAccountsIcon className={classes.iconSetting} />
+                                <Divider />
+                                <Button className={classes.button} onClick={() => setShowAccount(prev => !prev)}>Account</Button>
+                                {account &&
+                                    <AccountPage />
+                                }
+                            </Typography>
+                        </Grid>
+                        <Grid item className={classes.item}>
+                            <Typography>
+                                <PeopleIcon className={classes.iconSetting} />
+                                <Divider />
+                                <Button className={classes.button} onClick={() => setShowFriends(prev => !prev)}>Friend</Button>
+                                {friends &&
+                                    <FriendSetting />
+                                }
+                            </Typography>
+                        </Grid>
+                        <Grid item className={classes.item}>
+                            <Typography>
+                                <Brightness4Icon className={classes.iconSetting} />
+                                <Divider />
+                                <Button className={classes.button} onClick={() => setShowDisplay(prev => !prev)}>Display Mode</Button>
+                                {display &&
+                                    <DisplayMode />
+                                }
+                            </Typography>
+                        </Grid>
+                        <Grid item className={classes.item}>
+                            <Typography>
+                                <HelpIcon className={classes.iconSetting} />
+                                <Divider />
+                                <Button className={classes.button} onClick={() => setShowHelp(prev => !prev)}>Help</Button>
+                                {help &&
+                                    <Help />
+                                }
+                            </Typography>
+                        </Grid>
                     </Grid>
-                    <Grid item className={classes.item}>
-                        <Typography>
-                            <PeopleIcon className={classes.iconSetting}/>
-                            <Divider/>
-                            <Button className={classes.button} onClick={() => setShowFriends(prev => !prev)}>Friend</Button>
-                            {friends &&
-                                <FriendSetting />
-                            }
-                        </Typography>
-                    </Grid>
-                    <Grid item className={classes.item}>
-                        <Typography>
-                            <Brightness4Icon className={classes.iconSetting}/>
-                            <Divider/>
-                            <Button className={classes.button} onClick={() => setShowDisplay(prev => !prev)}>Display Mode</Button>
-                            {display &&
-                                <DisplayMode />
-                            }
-                        </Typography>
-                    </Grid>
-                    <Grid item className={classes.item}>
-                        <Typography>
-                            <HelpIcon className={classes.iconSetting}/>
-                            <Divider/>
-                            <Button className={classes.button} onClick={() => setShowHelp(prev => !prev)}>Help</Button>
-                            {help &&
-                                <Help />
-                            }
-                        </Typography>
-                    </Grid>
-                </Grid>
-            </Container>
-        </div >
+                </Container>
+            </div >
+        </div>
     );
 };
 
