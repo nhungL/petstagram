@@ -1,9 +1,13 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import useStyles from "./Style";
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   const classes = useStyles();
+  const navigate = useNavigate();
+
   return (
     <div className={classes.background}>
       <Grid
@@ -50,6 +54,14 @@ export default function SignUp() {
           <Button variant="contained" size="large" className={classes.buttonS}>
             Sign Up
           </Button>
+        </Grid>
+        <Grid item align="left">
+          <Typography className={classes.haveacc}>
+            Already have an account?{" "}
+            <Link to="/signin" className={classes.link}>
+              Sign In
+            </Link>
+          </Typography>
         </Grid>
       </Grid>
     </div>

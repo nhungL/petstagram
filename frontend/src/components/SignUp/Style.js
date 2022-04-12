@@ -29,10 +29,14 @@ const useStyles = makeStyles((theme) => ({
     width: "380px",
     marginTop: "30px",
     fontWeight: "bold",
-    marginBottom: "100px",
+    marginBottom: "20px",
   },
-  // card: {
-  //   height: "100vh",
-  // },
+  link: {
+    textDecoration: "none",
+  },
+  haveacc: {
+    color: "#949090",
+    marginLeft: "130px",
+  },
 }));
 export default useStyles;
