@@ -1,4 +1,4 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
+import { Alert, Button, Grid, TextField, Typography } from "@mui/material";
 import { Link } from "react-router-dom";
 import useStyles from "./Style";
 import React, { useEffect, useState } from "react";
@@ -13,7 +13,7 @@ export default function SignIn(props) {
   const [password, setPassword] = useState("");
 
   const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
+  const { userInfo, loading, error } = userSignin;
   const dispatch = useDispatch();
 
   const submitHandler = (e) => {
@@ -43,6 +43,15 @@ export default function SignIn(props) {
                 Sign In
               </Typography>
             </Grid>
+            {error && (
+              <Alert
+                // variant="filled"
+                severity="error"
+                className={classes.alert}
+              >
+                {error}
+              </Alert>
+            )}
             <Grid item>
               <Typography align="left" className={classes.body}>
                 Email

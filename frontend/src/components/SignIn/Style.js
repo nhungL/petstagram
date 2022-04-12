@@ -2,7 +2,7 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   background: {
-    marginTop: "15vw",
+    marginTop: "10vw",
     marginLeft: "10vw",
     width: "500px",
     height: "100vh",
@@ -21,12 +21,12 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "15px",
   },
   inputBox: {
-    width: "380px",
+    width: "410px",
     marginBottom: "20px",
   },
   buttonS: {
     backgroundColor: "#FFB2A6",
-    width: "380px",
+    width: "410px",
     marginTop: "30px",
     fontWeight: "bold",
     marginBottom: "30px",
@@ -37,6 +37,10 @@ const useStyles = makeStyles((theme) => ({
   newUser: {
     color: "#949090",
     marginLeft: "160px",
+  },
+  alert: {
+    width: "380px",
+    marginBottom: "30px",
   },
 }));
 export default useStyles;
