@@ -1,5 +1,6 @@
 import { Button, Grid, TextField, Typography } from "@mui/material";
 import React from "react";
+import { Link } from "react-router-dom";
 import useStyles from "./Style";
 
 export default function InputForm() {
@@ -99,9 +100,11 @@ export default function InputForm() {
         <Button variant="contained" className={classes.subbutton}>
           SAVE
         </Button>
-        <Button variant="contained" className={classes.subbutton}>
-          CANCEL
-        </Button>
+        <Link className={classes.link} to="/">
+          <Button variant="contained" className={classes.subbutton}>
+            CANCEL
+          </Button>
+        </Link>
       </Grid>
     </div>
   );
