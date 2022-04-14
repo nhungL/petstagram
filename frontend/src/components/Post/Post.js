@@ -48,6 +48,7 @@ export default function Post() {
 
   const submitPost = () => {
     //TO-DO: post request
+    
     setPostContent("");
   };
 

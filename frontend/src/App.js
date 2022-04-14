@@ -23,7 +23,7 @@ function App() {
           <Route path="/home" element={<HomePage />} />
           <Route path="/profile" element={<ProfilePage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
-          <Route path="/setting" element={<SettingPage />} />
+          <Route path="/settings" element={<SettingPage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="*" element={<UnfoundPage />} />
         </Routes>

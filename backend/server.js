@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routers/userRouter.js";
+import postRouter from "./routers/postRouter.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -12,6 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 mongoose.connect(
   process.env.MONGODB_URL || "mongodb://localhost:27017/petstagram"
 );
+
+app.use("/api/posts", postRouter);
 
 app.use("/api/users", userRouter);
 
