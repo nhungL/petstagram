@@ -42,12 +42,22 @@ userRouter.post(
     const user = new User({
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password, 7),
+      firstname: req.body.firstname,
+      lastname: req.body.lastname,
+      petname: req.body.petname,
+      age: req.body.age,
+      species: req.body.species,
     });
     const createdUser = await user.save();
     res.send({
       _id: createdUser._id,
       email: createdUser.email,
       isAdmin: createdUser.isAdmin,
+      firstname: createdUser.firstname,
+      lastname: createdUser.lastname,
+      petname: createdUser.petname,
+      age: createdUser.age,
+      species: createdUser.species,
       token: generateToken(createdUser),
     });
   })
