@@ -11,7 +11,7 @@ app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(
   process.env.MONGODB_URL ||
-    "mongodb+srv://admin:1234@petstagramdb.eiljr.mongodb.net/PetstagramDB?retryWrites=true&w=majority/petstagram"
+    "mongodb+srv://admin:1234@petstagramdb.eiljr.mongodb.net/PetstagramDB?retryWrites=true"
 );
 
 app.use("/api/users", userRouter);
