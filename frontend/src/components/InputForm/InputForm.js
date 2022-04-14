@@ -1,18 +1,53 @@
-import { Button, Grid, TextField, Typography } from "@mui/material";
-import React from "react";
-import { Link } from "react-router-dom";
+import { Alert, Button, Grid, TextField, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { register } from "../../actions/register";
 import useStyles from "./Style";
 
 export default function InputForm() {
   const classes = useStyles();
 
+  const [firstName, setfirstName] = useState("");
+  const [lastName, setlastName] = useState("");
+  const [age, setAge] = useState(0);
+  const [petName, setpetName] = useState("");
+  const [species, setSpecies] = useState("");
+
+  const { state } = useLocation();
+  const { email, password } = state;
+
+  const userRegister = useSelector((state) => state.userRegister);
+  const { userInfo, error } = userRegister;
+  const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
+    dispatch(
+      register(firstName, lastName, email, password, petName, age, species)
+    );
   };
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (userInfo) {
+      navigate("/home");
+    }
+  }, [userInfo]);
+
   return (
     <div>
       <form onSubmit={submitHandler}>
         <div className={classes.background}>
+          {error && (
+            <Alert
+              // variant="filled"
+              severity="error"
+              className={classes.alert}
+            >
+              {error}
+            </Alert>
+          )}
           <Grid container direction="row">
             <Grid item>
               <Typography variant="h6" align="left" className={classes.title}>
@@ -32,7 +67,7 @@ export default function InputForm() {
                       type="text"
                       id="firstname"
                       required
-                      // onChange={(e) => setfirstName(e.target.value)}
+                      onChange={(e) => setfirstName(e.target.value)}
                     ></TextField>
                   </Grid>
                   <Grid container direction="row">
@@ -47,7 +82,7 @@ export default function InputForm() {
                       type="text"
                       id="lastname"
                       required
-                      // onChange={(e) => setlastName(e.target.value)}
+                      onChange={(e) => setlastName(e.target.value)}
                     ></TextField>
                   </Grid>
                   <Grid container direction="row">
@@ -59,17 +94,8 @@ export default function InputForm() {
                     <TextField
                       size="small"
                       className={classes.inputBox}
-                    ></TextField>
-                  </Grid>
-                  <Grid container direction="row">
-                    <Typography
-                      className={`${classes.pw} ${classes.inputText}`}
-                    >
-                      Password
-                    </Typography>
-                    <TextField
-                      size="small"
-                      className={classes.inputBox}
+                      value={email}
+                      disabled
                     ></TextField>
                   </Grid>
                 </Grid>
@@ -91,6 +117,10 @@ export default function InputForm() {
                       <TextField
                         size="small"
                         className={classes.inputBox}
+                        type="text"
+                        id="petname"
+                        required
+                        onChange={(e) => setpetName(e.target.value)}
                       ></TextField>
                     </Grid>
                     <Grid container direction="row">
@@ -102,6 +132,9 @@ export default function InputForm() {
                       <TextField
                         size="small"
                         className={classes.inputBox}
+                        type="number"
+                        id="age"
+                        onChange={(e) => setAge(e.target.value)}
                       ></TextField>
                     </Grid>
                     <Grid container direction="row">
@@ -113,6 +146,9 @@ export default function InputForm() {
                       <TextField
                         size="small"
                         className={classes.inputBox}
+                        type="text"
+                        id="species"
+                        onChange={(e) => setSpecies(e.target.value)}
                       ></TextField>
                     </Grid>
                   </Grid>
@@ -121,7 +157,11 @@ export default function InputForm() {
             </Grid>
           </Grid>
           <Grid container direction="row">
-            <Button variant="contained" className={classes.subbutton}>
+            <Button
+              variant="contained"
+              className={classes.subbutton}
+              type="submit"
+            >
               SAVE
             </Button>
             <Link className={classes.link} to="/">
