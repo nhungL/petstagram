@@ -2,11 +2,9 @@ import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema(
     {
-        // id: { type: String, required: true, unique: true },
         image: { type: String, required: false },
-        //imageId: { type: String, required: false, unique: true },
         description: { type: String, required: true },
-        like: { type: Array, default: [] },
+        like: { type: Number, default: 0 },
         author: {
             // id: {
             //     type: mongoose.Schema.Types.ObjectId,
