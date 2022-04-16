@@ -12,12 +12,15 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signout } from "../../actions/logOut";
 
 export default function AppBarContent() {
   const classes = useStyles();
   const [openSettings, setOpenSettings] = useState(false);
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
 
   const dispatch = useDispatch();
   const signoutHandler = () => {
@@ -86,10 +89,7 @@ export default function AppBarContent() {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={setOpenSettings} sx={{ p: 0 }}>
-                <Avatar
-                  alt="User Avatar"
-                  src="https://marketplace.canva.com/EAEeO4U2XBM/1/0/1600w/canva-pink-and-yellow-cat-modern-hand-drawn-abstract-twitch-profile-picture--lGNrdmHvS4.jpg"
-                />
+                <Avatar alt="User Avatar" src={userInfo.avatar} />
               </IconButton>
             </Tooltip>
             <Menu
