@@ -33,8 +33,8 @@ export default function SignUp() {
     } else {
       // dispatch(register(email, password));
       setState({ email: email, password: password });
-      alert(email);
-      alert(password);
+      // alert(email);
+      // alert(password);
       navigate("/account", { state: { email: email, password: password } });
     }
   };

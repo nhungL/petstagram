@@ -46,8 +46,9 @@ export default function Post() {
     setPromptText("How's your day?")
   };
 
-  const submitPost = () => {
+  const submitPost = (e) => {
     //TO-DO: post request
+    e.preventDefault();
     
     setPostContent("");
   };
@@ -60,101 +61,105 @@ export default function Post() {
     <div className={classes.post}>
       <div className={classes.pad}>
         <Grid container direction="column">
-          <div className={classes.top}>
-            <Avatar
-              src="/static/images/avatar/2.jpg"
-              className={classes.avatar}
-            >
-              NL
-            </Avatar>
-            <div className={classes.inputBox}>
-              <TextField
-                placeholder={promptText}
-                variant="outlined"
-                size="small"
-                multiline
-                rows={3}
-                className={classes.inputBox}
-                value={postContent}
-                onChange={(e) => setPostContent(e.target.value)}
-                InputProps={{
-                  classes: {
-                    root: classes.input,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
-              />
-              {isImageSelected && (
-                <div className={classes.postImg}>
-                  <Box
-                    component="img"
-                    sx={{
-                      height: 300,
-                    }}
-                    src={postImage}
-                  />
-                  <IconButton
-                    aria-label="upload picture"
-                    component="span"
-                    onClick={deleteImage}
-                  >
-                    <Close style={{ color: "#C4C4C4" }} />
-                  </IconButton>
-                </div>
-              )}
-            </div>
-          </div>
-
-          <Grid container direction="row" spacing={0}>
-            <Grid item xs>
-              <Stack direction="row" alignItems="center" spacing={2}>
-                <label htmlFor="image-button-file">
-                  <Input
-                    accept="image/*"
-                    id="image-button-file"
-                    type="file"
-                    onChange={uploadImage}
-                  />
-                  <IconButton
-                    aria-label="upload picture"
-                    component="span"
-                    className={classes.uploadimagebutton}
-                  >
-                    <PhotoCamera />
-                  </IconButton>
-                </label>
-                <label htmlFor="video-button-file">
-                  <Input
-                    accept="video/mp4,video/x-m4v,video/*"
-                    id="video-button-file"
-                    //multiple
-                    type="file"
-                  />
-                  <IconButton
-                    aria-label="upload picture"
-                    component="span"
-                    className={classes.uploadvideobutton}
-                    style={{ ml: "20px" }}
-                  >
-                    <VideoLibraryIcon />
-                  </IconButton>
-                </label>
-              </Stack>
-            </Grid>
-            <Grid>
-              <Button
-                variant="contained"
-                size="small"
-                className={classes.button}
-                onClick={submitPost}
+          <form onSubmit={submitPost}>
+            <div className={classes.top}>
+              <Avatar
+                src="/static/images/avatar/2.jpg"
+                className={classes.avatar}
               >
-                Post
-              </Button>
+                NL
+              </Avatar>
+
+              <div className={classes.inputBox}>
+                <TextField
+                  placeholder={promptText}
+                  variant="outlined"
+                  size="small"
+                  multiline
+                  rows={3}
+                  className={classes.inputBox}
+                  value={postContent}
+                  onChange={(e) => setPostContent(e.target.value)}
+                  InputProps={{
+                    classes: {
+                      root: classes.input,
+                      focused: classes.focused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
+                />
+                {isImageSelected && (
+                  <div className={classes.postImg}>
+                    <Box
+                      component="img"
+                      sx={{
+                        height: 300,
+                      }}
+                      src={postImage}
+                    />
+                    <IconButton
+                      aria-label="upload picture"
+                      component="span"
+                      onClick={deleteImage}
+                    >
+                      <Close style={{ color: "#C4C4C4" }} />
+                    </IconButton>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <Grid container direction="row" spacing={0}>
+              <Grid item xs>
+                <Stack direction="row" alignItems="center" spacing={2}>
+                  <label htmlFor="image-button-file">
+                    <Input
+                      accept="image/*"
+                      id="image-button-file"
+                      type="file"
+                      onChange={uploadImage}
+                    />
+                    <IconButton
+                      aria-label="upload picture"
+                      component="span"
+                      className={classes.uploadimagebutton}
+                    >
+                      <PhotoCamera />
+                    </IconButton>
+                  </label>
+                  <label htmlFor="video-button-file">
+                    <Input
+                      accept="video/mp4,video/x-m4v,video/*"
+                      id="video-button-file"
+                      //multiple
+                      type="file"
+                    />
+                    <IconButton
+                      aria-label="upload picture"
+                      component="span"
+                      className={classes.uploadvideobutton}
+                      style={{ ml: "20px" }}
+                    >
+                      <VideoLibraryIcon />
+                    </IconButton>
+                  </label>
+                </Stack>
+              </Grid>
+              <Grid>
+                <Button
+                  variant="contained"
+                  size="small"
+                  className={classes.button}
+                  // onClick={submitPost}
+                  type="submit"
+                >
+                  Post
+                </Button>
+              </Grid>
             </Grid>
-          </Grid>
+          </form>
         </Grid>
       </div>
-    </div>
+    </div >
   );
 }
