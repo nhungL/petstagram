@@ -85,7 +85,7 @@ export default function AppBarContent() {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={setOpenSettings} sx={{ p: 0 }}>
+              <IconButton onClick={() => setOpenSettings(!openSettings)} sx={{ p: 0 }}>
                 <Avatar
                   alt="User Avatar"
                   src="https://marketplace.canva.com/EAEeO4U2XBM/1/0/1600w/canva-pink-and-yellow-cat-modern-hand-drawn-abstract-twitch-profile-picture--lGNrdmHvS4.jpg"
@@ -115,7 +115,7 @@ export default function AppBarContent() {
                 </MenuItem>
               </Link>
 
-              <Link to="/settings" className={classes.link}>
+              <Link to="/setting" className={classes.link}>
                 <MenuItem key="settings">
                   <Typography textAlign="center" className={classes.menuItem}>
                     Settings
