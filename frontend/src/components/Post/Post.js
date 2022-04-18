@@ -21,6 +21,8 @@ export default function Post() {
   const [isImageSelected, setIsImageSelected] = useState(false);
   const [promptText, setPromptText] = useState("How's your day?");
 
+  const [error, setError] = useState(false);
+
   const uploadImage = (event) => {
     setIsImageSelected(true);
     setPromptText("Say something about this photo...");
@@ -48,8 +50,7 @@ export default function Post() {
 
   const submitPost = (e) => {
     //TO-DO: post request
-    e.preventDefault();
-    
+    // e.preventDefault();
     setPostContent("");
   };
 
