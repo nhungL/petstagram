@@ -6,19 +6,24 @@ import Chat from "../../components/Chat/Chat";
 import Post from "../../components/Post/Post";
 import Feed from "../../components/Feed/Feed";
 import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
+import { useSelector } from "react-redux";
 
 export default function ProfilePage() {
   const classes = useStyles();
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   return (
     <div className={classes.background}>
       <AppBarContent />
       <Container>
         <Grid container spacing={0} justifyContent="center">
-          <Avatar src="not-found-image.png" className={classes.avatar}>
-            NL
-          </Avatar>
+          <Avatar src={userInfo.avatar} className={classes.avatar}></Avatar>
         </Grid>
-        <h3>Nhung Luong</h3>
+        <h3>
+          {userInfo.firstname} {userInfo.lastname}
+        </h3>
         <div style={{ justifyContent: "center", display: "flex" }}>
           <AvatarGroup max={4}>
             <Avatar alt="Thuy Le" src="YourPicturePath" />
