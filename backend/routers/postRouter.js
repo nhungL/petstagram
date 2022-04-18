@@ -1,10 +1,8 @@
-import bcrypt from "bcryptjs";
 import express from "express";
 import expressAsyncHandler from "express-async-handler";
-import postData from "../postData.js";
 import Post from "../models/postModel.js";
-import { generateToken } from "../utils.js";
 import User from "../models/userModel.js";
+
 
 const postRouter = express.Router();
 //create a post
@@ -12,18 +10,18 @@ postRouter.post("/", async (req, res) => {
     const newPost = new Post(req.body)
     try {
         const savedPost = await newPost.save();
-        res.status(200).send({ message: "succeed" });
+        res.status(200).json(savedPost);
     } catch (err) {
-        res.status(500).send({ message: "error" });
+        res.status(500).json(err);
     }
 });
 
 //update a post
-postRouter.put("/:id", async(req, res) => {
+postRouter.put("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         if (post.userId === res.body.userId) {
-            await post.updateOne({$set:req.body});
+            await post.updateOne({ $set: req.body });
             res.status(200).send({ message: "updated your post" });
         } else {
             res.status(403).send({ message: "only update your post" });
@@ -34,7 +32,7 @@ postRouter.put("/:id", async(req, res) => {
 });
 
 //update a post
-postRouter.delete("/:id", async(req, res) => {
+postRouter.delete("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         if (post.userId === res.body.userId) {
@@ -49,14 +47,14 @@ postRouter.delete("/:id", async(req, res) => {
 });
 
 //like-dislike a post
-postRouter.put("/:id/like", async(req, res) => {
+postRouter.put("/:id/like", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
         if (!post.like.includes(req.body.userId)) {
-            await post.updateOne({$push: {like: req.body.userId}});
+            await post.updateOne({ $push: { like: req.body.userId } });
             res.status(200).send({ message: "liked your post" });
         } else {
-            await post.updateOne({$pull: {like: req.body.userId}});
+            await post.updateOne({ $pull: { like: req.body.userId } });
             res.status(200).send({ message: "disliked your post" });
         }
     } catch (err) {
@@ -65,24 +63,43 @@ postRouter.put("/:id/like", async(req, res) => {
 });
 
 //get a post
-postRouter.get("/:id", async(req, res) => {
+postRouter.get("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
-        res.status(200).send({ message: "succeed" });
+        res.status(200).send(post);
     } catch (err) {
         res.status(500).send({ message: "error" });
     }
 });
 
 //get timeline posts
-postRouter.get("timeline/all", async(req, res) => {
-    let postArray = [];
+postRouter.get("/timeline", async (req, res) => {
     try {
-        const currentUser = await User.findById(req.body.userId);
-        const userPosts = await Post.find({ userId: currentUser._id });
-        // const friendPosts = await Promise.all(); 
+        // console.log(currentUser);
+        const userPosts = await Post.find({ });
+        res.status(200).send(userPosts);
 
         res.send(userPosts);
+    } catch (err) {
+        res.status(500).send({ message: "error" });
+    }
+    // Post.find({}, function (err, allPosts) {
+    //     if (err) {
+    //         console.log("not ok");
+    //     }
+    //     else {
+    //         res.render({ posts: allPosts, noMatch: noMatch });
+    //     }
+    // })
+});
+
+//get user's all posts: get by userId
+postRouter.get("/profile/:id", async (req, res) => {
+    try {
+        const currentUser = await User.findById(req.params.id);
+        // console.log(currentUser);
+        const userPosts = await Post.find({ author: currentUser._id });
+        res.status(200).send(userPosts);
     } catch (err) {
         res.status(500).send({ message: "error" });
     }
