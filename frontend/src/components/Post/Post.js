@@ -13,13 +13,20 @@ import PhotoCamera from "@mui/icons-material/PhotoCamera";
 import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import { styled } from "@mui/styles";
 import { Box } from "@mui/system";
+import { useSelector } from "react-redux";
 
 export default function Post() {
   const classes = useStyles();
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const [postContent, setPostContent] = useState("");
   const [postImage, setPostImage] = useState();
   const [isImageSelected, setIsImageSelected] = useState(false);
-  const [promptText, setPromptText] = useState("How's your day?");
+  const [promptText, setPromptText] = useState(
+    "Hi, " + userInfo.firstname + "! How's your day?"
+  );
 
   const [error, setError] = useState(false);
 
@@ -45,7 +52,7 @@ export default function Post() {
   const deleteImage = () => {
     setIsImageSelected(false);
     setPostImage("");
-    setPromptText("How's your day?")
+    setPromptText("Hi, " + userInfo.firstname + "! How's your day?");
   };
 
   const submitPost = (e) => {
@@ -62,52 +69,44 @@ export default function Post() {
     <div className={classes.post}>
       <div className={classes.pad}>
         <Grid container direction="column">
-          <form onSubmit={submitPost}>
-            <div className={classes.top}>
-              <Avatar
-                src="/static/images/avatar/2.jpg"
-                className={classes.avatar}
-              >
-                NL
-              </Avatar>
-
-              <div className={classes.inputBox}>
-                <TextField
-                  placeholder={promptText}
-                  variant="outlined"
-                  size="small"
-                  multiline
-                  rows={3}
-                  className={classes.inputBox}
-                  value={postContent}
-                  onChange={(e) => setPostContent(e.target.value)}
-                  InputProps={{
-                    classes: {
-                      root: classes.input,
-                      focused: classes.focused,
-                      notchedOutline: classes.notchedOutline,
-                    },
-                  }}
-                />
-                {isImageSelected && (
-                  <div className={classes.postImg}>
-                    <Box
-                      component="img"
-                      sx={{
-                        height: 300,
-                      }}
-                      src={postImage}
-                    />
-                    <IconButton
-                      aria-label="upload picture"
-                      component="span"
-                      onClick={deleteImage}
-                    >
-                      <Close style={{ color: "#C4C4C4" }} />
-                    </IconButton>
-                  </div>
-                )}
-              </div>
+          <div className={classes.top}>
+            <Avatar src={userInfo.avatar} className={classes.avatar}></Avatar>
+            <div className={classes.inputBox}>
+              <TextField
+                placeholder={promptText}
+                variant="outlined"
+                size="small"
+                multiline
+                rows={3}
+                className={classes.inputBox}
+                value={postContent}
+                onChange={(e) => setPostContent(e.target.value)}
+                InputProps={{
+                  classes: {
+                    root: classes.input,
+                    focused: classes.focused,
+                    notchedOutline: classes.notchedOutline,
+                  },
+                }}
+              />
+              {isImageSelected && (
+                <div className={classes.postImg}>
+                  <Box
+                    component="img"
+                    sx={{
+                      height: 300,
+                    }}
+                    src={postImage}
+                  />
+                  <IconButton
+                    aria-label="upload picture"
+                    component="span"
+                    onClick={deleteImage}
+                  >
+                    <Close style={{ color: "#C4C4C4" }} />
+                  </IconButton>
+                </div>
+              )}
             </div>
 
             <Grid container direction="row" spacing={0}>
@@ -158,7 +157,7 @@ export default function Post() {
                 </Button>
               </Grid>
             </Grid>
-          </form>
+          </div>
         </Grid>
       </div>
     </div >

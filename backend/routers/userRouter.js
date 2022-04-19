@@ -26,6 +26,7 @@ userRouter.post(
           firstname: user.firstname,
           lastname: user.lastname,
           email: user.email,
+          avatar: user.avatar,
           isAdmin: user.isAdmin,
           token: generateToken(user),
         });
@@ -55,6 +56,7 @@ userRouter.post(
       isAdmin: createdUser.isAdmin,
       firstname: createdUser.firstname,
       lastname: createdUser.lastname,
+      avatar: createdUser.avatar,
       petname: createdUser.petname,
       age: createdUser.age,
       species: createdUser.species,
