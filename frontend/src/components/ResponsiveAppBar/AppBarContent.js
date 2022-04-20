@@ -36,7 +36,9 @@ export default function AppBarContent() {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            <img src="Logo.png" alt="logo" width="150" height="auto" />
+            <Link to="/home" style={{ textDecoration: "None" }}>
+              <img src="../Logo.png" alt="logo" width="150" height="auto" />
+            </Link>
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -88,8 +90,11 @@ export default function AppBarContent() {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={setOpenSettings} sx={{ p: 0 }}>
-                <Avatar alt="User Avatar" src={userInfo.avatar} />
+              <IconButton onClick={() => setOpenSettings(!openSettings)} sx={{ p: 0 }}>
+                <Avatar
+                  alt="User Avatar"
+                  src="https://marketplace.canva.com/EAEeO4U2XBM/1/0/1600w/canva-pink-and-yellow-cat-modern-hand-drawn-abstract-twitch-profile-picture--lGNrdmHvS4.jpg"
+                />
               </IconButton>
             </Tooltip>
             <Menu
@@ -107,7 +112,7 @@ export default function AppBarContent() {
               open={openSettings}
               onClose={() => setOpenSettings(false)}
             >
-              <Link to="/profile" className={classes.link}>
+              <Link to={`/profile/${userInfo._id}`} className={classes.link}>
                 <MenuItem key="profile">
                   <Typography textAlign="center" style={{ color: "black" }}>
                     Profile

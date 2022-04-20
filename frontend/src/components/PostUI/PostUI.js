@@ -2,13 +2,15 @@ import React from "react";
 import useStyles from "./Style";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { Avatar, Button } from "@mui/material";
 import { Favorite, MoreVert } from "@mui/icons-material";
 import axios from "axios";
-import {format} from "timeago.js";
+import { format } from "timeago.js";
 
 export default function PostUI({ post }) {
-    const [like, setLike] = useState(post.like );
+    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+    const [like, setLike] = useState(post.like);
 
     //get current user
     const userSignin = useSelector((state) => state.userSignin);
@@ -28,7 +30,6 @@ export default function PostUI({ post }) {
     useEffect(() => {
         const fetchUser = async () => {
             const res = await axios.get(`api/users/${post.author}`);
-            console.log("user", res);
             setUser(res.data);
         };
         fetchUser();
@@ -36,44 +37,48 @@ export default function PostUI({ post }) {
 
     const classes = useStyles();
     return (
-        <div className={classes.postWrapper}>
-            < div className={classes.postTop} >
-                <div className={classes.postTopLeft}>
-                    <Avatar className={classes.postProfileImg}>
-                        {userInfo.avatar}
-                    </Avatar>
-                    <div className={classes.postTopLeftText}>
-                        <span className={classes.postUsername}>
-                            {userInfo.firstname}
-                        </span>
-                        <span className={classes.postDate}>{format(post.createdAt)}</span>
+        <div className={classes.post}>
+            <div className={classes.postWrapper}>
+                < div className={classes.postTop} >
+                    <div className={classes.postTopLeft}>
+                        <Link to={`/profile/${post.author}`} style={{textDecoration:"None"}}>
+                            <Avatar className={classes.postProfileImg}>
+                                {user.avatar}
+                            </Avatar>
+                        </Link>
+                        <div className={classes.postTopLeftText}>
+                            <span className={classes.postUsername}>
+                                {user.firstname} {user.lastname}
+                            </span>
+                            <span className={classes.postDate}>{format(post.createdAt)}</span>
+                        </div>
                     </div>
-                </div>
-                <div className={classes.postTopRight}>
-                    <MoreVert />
-                </div>
-            </div >
+                    <div className={classes.postTopRight}>
+                        <MoreVert />
+                    </div>
+                </div >
 
-            <div className={classes.postCenter}>
-                <span className={classes.postText} align="left">
-                    {post.description}
-                </span>
-                <img
-                    className={classes.postImg}
-                    src={post.image}
-                    alt=""
-                />
-            </div>
-
-            <div className={classes.postBottom}>
-                <div className={classes.postBottomLeft}>
-                    <Button
-                        className={classes.likeIcon}
-                        startIcon={<Favorite />}
-                        onClick={likeHandler}
-                        style={{ color: isLiked ? "#E33A15" : "#C4C4C4" }}
+                <div className={classes.postCenter}>
+                    <span className={classes.postText} align="left">
+                        {post.description}
+                    </span>
+                    <img
+                        className={classes.postImg}
+                        src={post.image}
+                        alt=""
                     />
-                    <span className={classes.postLikeCounter}>{like}</span>
+                </div>
+
+                <div className={classes.postBottom}>
+                    <div className={classes.postBottomLeft}>
+                        <Button
+                            className={classes.likeIcon}
+                            startIcon={<Favorite />}
+                            onClick={likeHandler}
+                            style={{ color: isLiked ? "#E33A15" : "#C4C4C4" }}
+                        />
+                        <span className={classes.postLikeCounter}>{like}</span>
+                    </div>
                 </div>
             </div>
         </div>

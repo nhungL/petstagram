@@ -5,15 +5,17 @@ import axios from "axios";
 import PostUI from "../PostUI/PostUI";
 
 export default function Feed({ userId }) {
+  console.log(userId);
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     const fetchPosts = async () => {
-      const res = await axios.get("api/posts/profile/" + userId);
-      console.log(res.data);
-      setPosts(res.data);
-      // setPosts(res.data.sort((p1, p2) => {
-      //   return new Date(p2.createdAt) - new Date(p1.createdAt);
-      // }));
+      const res = userId
+      ? await axios.get("/api/posts/profile/" + userId)
+      : await axios.get("api/posts");
+      // setPosts(res.data);
+      setPosts(res.data.sort((p1, p2) => {
+        return new Date(p2.createdAt) - new Date(p1.createdAt);
+      }));
     };
     fetchPosts();
   }, [userId]);
@@ -22,7 +24,7 @@ export default function Feed({ userId }) {
   return (
     <>
       <div className={classes.feed}>
-        <div className={classes.post}>
+        {/* <div className={classes.post}> */}
           {posts.map((p) => (
             <PostUI key={p.id} post={p} />
             // <div className={classes.postWrapper}>
@@ -69,7 +71,7 @@ export default function Feed({ userId }) {
             //   </div>
             // </div>
           ))}
-        </div>
+        {/* </div> */}
       </div>
     </>
   );

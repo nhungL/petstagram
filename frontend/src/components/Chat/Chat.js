@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useStyles from "./Style";
 import { Typography } from "@mui/material";
 import Friend from "../Friend/Friend";
@@ -61,6 +61,7 @@ const Users = [
 
 export default function Chat() {
   const classes = useStyles();
+
   return (
     <div className={classes.chat}>
       <div className={classes.chatWrapper}>
