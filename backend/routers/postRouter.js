@@ -2,9 +2,17 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Post from "../models/postModel.js";
 import User from "../models/userModel.js";
+import { Posts } from "../postData.js";
 
 
 const postRouter = express.Router();
+postRouter.get("/seed",
+    expressAsyncHandler(async (req, res) => {
+        const createdPosts = await Post.insertMany(Posts);
+        res.send({createdPosts});
+    })
+);
+
 //create a post
 postRouter.post("/", async (req, res) => {
     const newPost = new Post(req.body)
@@ -63,43 +71,44 @@ postRouter.put("/:id/like", async (req, res) => {
 });
 
 //get a post
-postRouter.get("/:id", async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-        res.status(200).send(post);
-    } catch (err) {
-        res.status(500).send({ message: "error" });
-    }
-});
+postRouter.get("/:id",
+    expressAsyncHandler(async (req, res) => {
+        try {
+            const post = await Post.findById(req.params.id);
+            if (post) {
+                res.status(200).send(post);
+            } else {
+                res.status(404).send({ message: 'Post Not Found.' });
+            }
+        } catch (err) {
+            res.status(500).send({ message: "error" });
+        }
+    })
+);
 
 //get timeline posts
-postRouter.get("/timeline", async (req, res) => {
-    try {
-        // console.log(currentUser);
-        const userPosts = await Post.find({ });
-        res.status(200).send(userPosts);
-
-        res.send(userPosts);
-    } catch (err) {
-        res.status(500).send({ message: "error" });
-    }
-    // Post.find({}, function (err, allPosts) {
-    //     if (err) {
-    //         console.log("not ok");
-    //     }
-    //     else {
-    //         res.render({ posts: allPosts, noMatch: noMatch });
-    //     }
-    // })
-});
+postRouter.get("/",
+    expressAsyncHandler(async (req, res) => {
+        try {
+            const allPosts = await Post.find({});
+            if (allPosts){
+                res.status(200).send(allPosts);
+            }else{
+                res.status(404).send({ message: 'No Post Not Found.' });
+            }
+        } catch (err) {
+            res.status(500).send({ message: "error" });
+        }
+    })
+);
 
 //get user's all posts: get by userId
 postRouter.get("/profile/:id", async (req, res) => {
     try {
         const currentUser = await User.findById(req.params.id);
-        // console.log(currentUser);
         const userPosts = await Post.find({ author: currentUser._id });
         res.status(200).send(userPosts);
+        return userPosts;
     } catch (err) {
         res.status(500).send({ message: "error" });
     }

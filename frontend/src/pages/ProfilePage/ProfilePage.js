@@ -44,7 +44,7 @@ export default function ProfilePage() {
               <Post />
             </Grid>
             <Grid item>
-              <Feed />
+              <Feed userId="625cfdfca2092476db2bd815"/>
             </Grid>
           </Grid>
 
