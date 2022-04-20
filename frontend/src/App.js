@@ -10,8 +10,12 @@ import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import MapPage from "./pages/MapPage/MapPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
+import { useSelector } from "react-redux";
+
 
 function App() {
+  // const userSignin = useSelector((state) => state.userSignin);
+  // const { userInfo, loading, error } = userSignin;
   return (
     <div className="App">
       <BrowserRouter>
@@ -21,9 +25,10 @@ function App() {
           <Route path="/account" element={<AccountPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/home" element={<HomePage />} />
-          <Route path="/profile" element={<ProfilePage />} />
+
+          <Route path="/profile/:id" element={<ProfilePage />} />
           <Route path="/about-us" element={<AboutUsPage />} />
-          <Route path="/setting" element={<SettingPage />} />
+          <Route path="/settings" element={<SettingPage />} />
           <Route path="/map" element={<MapPage />} />
           <Route path="*" element={<UnfoundPage />} />
         </Routes>

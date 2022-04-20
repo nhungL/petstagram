@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import userRouter from "./routers/userRouter.js";
+import postRouter from "./routers/postRouter.js";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -13,6 +14,8 @@ mongoose.connect(
   process.env.MONGODB_URL ||
     "mongodb+srv://admin:1234@petstagramdb.eiljr.mongodb.net/PetstagramDB?retryWrites=true"
 );
+
+app.use("/api/posts", postRouter);
 
 app.use("/api/users", userRouter);
 

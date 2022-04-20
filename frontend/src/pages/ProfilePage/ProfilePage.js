@@ -7,6 +7,9 @@ import Post from "../../components/Post/Post";
 import Feed from "../../components/Feed/Feed";
 import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
 import { useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function ProfilePage() {
   const classes = useStyles();
@@ -14,15 +17,27 @@ export default function ProfilePage() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
 
+  const [user, setUser] = useState({});
+  const userId = useParams().id;
+  // console.log(userId);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`/api/users/${userId}`);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [userId]);
+
   return (
     <div className={classes.background}>
       <AppBarContent />
       <Container>
         <Grid container spacing={0} justifyContent="center">
-          <Avatar src={userInfo.avatar} className={classes.avatar}></Avatar>
+          <Avatar src={user.avatar} className={classes.avatar}></Avatar>
         </Grid>
         <h3>
-          {userInfo.firstname} {userInfo.lastname}
+          {user.firstname} {user.lastname}
         </h3>
         <div style={{ justifyContent: "center", display: "flex" }}>
           <AvatarGroup max={4}>
@@ -44,7 +59,7 @@ export default function ProfilePage() {
               <Post />
             </Grid>
             <Grid item>
-              <Feed />
+              <Feed userId={userId}/>
             </Grid>
           </Grid>
 

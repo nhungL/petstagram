@@ -6,10 +6,6 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
   },
-  container: {
-    display: "flex",
-    flexDirection: "column",
-  },
   avatar: {
     marginTop: "20px",
     width: 100,
@@ -36,11 +32,95 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
     height: "100%",
   },
-  // item: {
-  //   backgroundColor: "#FFFFFF",
-  //   width: "95%",
-  //   borderRadius: 20,
-  //   boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
-  // },
+  chat: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: "20px",
+    boxShadow: "0px 0px 16px -8px rgba(0, 0, 0, 0.68)",
+    minWidth: "250px",
+    margin: "15px",
+  },
+  chatWrapper: {
+    padding: "20px",
+  },
+  chatTitle: {
+    fontWeight: "bold",
+  },
+  friendList: {
+    padding: "0",
+    margin: "0",
+    listStyle: "none",
+  },
+  friend: {
+    display: "flex",
+    alignItems: "center",
+    marginBottom: "15px",
+  },
+  friendImg: {
+    width: "32px",
+    height: "32px",
+    borderRadius: "50%",
+    objectFit: "cover",
+    marginRight: "10px",
+  },
+  chatPreview: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
+  friendUsername: {
+    fontSize: "15px",
+    fontWeight: "500",
+  },
+  chatContent: {
+    fontSize: "12px",
+    margin: "5px 0",
+  },
+
+  //for chat
+  chatContainer: {
+    width: "300px",
+    height: "350px",
+    position: "sticky",
+    marginLeft: "70%",
+    bottom: 0,
+  },
+  paper: {
+    width: "100%",
+    height: "100%",
+    display: "flex",
+    flexDirection: "column",
+  },
+  messagesBody: {
+    margin: 10,
+    overflowY: "scroll",
+    minHeight: "240px",
+  },
+  chatUsername: {
+    fontSize: "15px",
+    fontWeight: "500",
+    marginTop: "10px",
+    marginLeft: "10px",
+  },
+  closeButton: {
+    color: "#FFB2A6",
+  },
+  sendButton: {
+    backgroundColor: "#FFB2A6",
+    fontWeight: "bold",
+    marginLeft: "20px",
+    marginRight: "10px",
+    marginBottom: "10px",
+  },
+  input: {
+    color: "black",
+    borderRadius: 20,
+    "&$focused $notchedOutline": {
+      borderColor: "#FFB2A6",
+    },
+    marginLeft: "10px",
+    marginBottom: "10px",
+  },
+  focused: {},
+  notchedOutline: {},
 }));
 export default useStyles;

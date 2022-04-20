@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import useStyles from "./Style";
 import {
   Button,
@@ -14,20 +14,30 @@ import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import { styled } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 export default function Post() {
   const classes = useStyles();
 
+  //Get current user info
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
 
+  //Post info
   const [postContent, setPostContent] = useState("");
   const [postImage, setPostImage] = useState();
+  const [state, setState] = useState({
+    description: "",
+    author: "",
+  });
+  const [error, setError] = useState(false);
+
   const [isImageSelected, setIsImageSelected] = useState(false);
   const [promptText, setPromptText] = useState(
     "Hi, " + userInfo.firstname + "! How's your day?"
   );
 
+  //Upload Image
   const uploadImage = (event) => {
     setIsImageSelected(true);
     setPromptText("Say something about this photo...");
@@ -47,14 +57,40 @@ export default function Post() {
     }
   };
 
+  //Delete Image
   const deleteImage = () => {
     setIsImageSelected(false);
     setPostImage("");
     setPromptText("Hi, " + userInfo.firstname + "! How's your day?");
   };
 
-  const submitPost = () => {
-    //TO-DO: post request
+  //Submit post to DB
+  const submitPost = async (e) => {
+    e.preventDefault();
+
+    // const newPost = {
+    //   userId: userInfo._id,
+    //   description: desc.current.value,
+    // }
+    // if (file) {
+    //   const data = new FormData();
+    //   const fileName = Date.now() + file.name;
+    //   data.append("name", fileName);
+    //   data.append("file", file);
+    //   newPost.img = fileName;
+    //   console.log(newPost);
+    //   try {
+    //     await axios.post("/upload", data);
+    //   } catch (err) {}
+    // }
+  //  try {
+  //     setState({ 
+        
+  //       description: description,
+  //      }); 
+  //     // navigate("/account", { state: { email: email, password: password } });
+  //     window.location.reload();
+  //   } catch (err) { }
     setPostContent("");
   };
 
@@ -78,6 +114,8 @@ export default function Post() {
                 className={classes.inputBox}
                 value={postContent}
                 onChange={(e) => setPostContent(e.target.value)}
+                name="description"
+                id="description"
                 InputProps={{
                   classes: {
                     root: classes.input,
@@ -107,55 +145,57 @@ export default function Post() {
             </div>
           </div>
 
-          <Grid container direction="row" spacing={0}>
-            <Grid item xs>
-              <Stack direction="row" alignItems="center" spacing={2}>
-                <label htmlFor="image-button-file">
-                  <Input
-                    accept="image/*"
-                    id="image-button-file"
-                    type="file"
-                    onChange={uploadImage}
-                  />
-                  <IconButton
-                    aria-label="upload picture"
-                    component="span"
-                    className={classes.uploadimagebutton}
-                  >
-                    <PhotoCamera />
-                  </IconButton>
-                </label>
-                <label htmlFor="video-button-file">
-                  <Input
-                    accept="video/mp4,video/x-m4v,video/*"
-                    id="video-button-file"
-                    //multiple
-                    type="file"
-                  />
-                  <IconButton
-                    aria-label="upload picture"
-                    component="span"
-                    className={classes.uploadvideobutton}
-                    style={{ ml: "20px" }}
-                  >
-                    <VideoLibraryIcon />
-                  </IconButton>
-                </label>
-              </Stack>
+          <form className={classes.bottom} onSubmit={submitPost}>
+            <Grid container direction="row" spacing={0}>
+              <Grid item xs>
+                <Stack direction="row" alignItems="center" spacing={2}>
+                  <label htmlFor="image-button-file">
+                    <Input
+                      accept="image/*"
+                      id="image-button-file"
+                      type="file"
+                      onChange={uploadImage}
+                    />
+                    <IconButton
+                      aria-label="upload picture"
+                      component="span"
+                      className={classes.uploadimagebutton}
+                    >
+                      <PhotoCamera />
+                    </IconButton>
+                  </label>
+                  <label htmlFor="video-button-file">
+                    <Input
+                      accept="video/mp4,video/x-m4v,video/*"
+                      id="video-button-file"
+                      //multiple
+                      type="file"
+                    />
+                    <IconButton
+                      aria-label="upload picture"
+                      component="span"
+                      className={classes.uploadvideobutton}
+                      style={{ ml: "20px" }}
+                    >
+                      <VideoLibraryIcon />
+                    </IconButton>
+                  </label>
+                </Stack>
+              </Grid>
+              <Grid>
+                <Button
+                  variant="contained"
+                  size="small"
+                  className={classes.button}
+                  type="submit"
+                >
+                  Post
+                </Button>
+              </Grid>
             </Grid>
-            <Grid>
-              <Button
-                variant="contained"
-                size="small"
-                className={classes.button}
-                onClick={submitPost}
-              >
-                Post
-              </Button>
-            </Grid>
-          </Grid>
+          </form>
         </Grid>
       </div>
-    </div>
+    </div >
   );
 }
