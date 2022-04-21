@@ -53,5 +53,34 @@ const useStyles = makeStyles((theme) => ({
     textDecoration: "none",
     color: "white",
   },
+  line: {
+    backgroundColor: "black",
+  },
+  title2: {
+    marginTop: "20px",
+    marginBottom: "20px",
+    marginLeft: "30px",
+  },
+  box: {
+    width: "100px",
+  },
+  subbutton2: {
+    backgroundColor: "#C4C4C4",
+    fontWeight: "bold",
+    marginBottom: "72px",
+  },
+  buttonR: {
+    fontWeight: "bold",
+    backgroundColor: "#C4C4C4",
+    marginTop: "20px",
+    marginBottom: "30px",
+    marginLeft: "20px",
+    width: "150px",
+  },
+  image: {
+    width: "180px",
+    height: "180px",
+    margin: "50px",
+  },
 }));
 export default useStyles;

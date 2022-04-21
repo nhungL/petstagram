@@ -2,12 +2,11 @@ import {
   USER_REGISTER_FAIL,
   USER_REGISTER_REQUEST,
   USER_REGISTER_SUCCESS,
-  USER_SIGNIN_SUCCESS,
 } from "../constants/userConstants";
 import Axios from "axios";
 
 export const register =
-  (firstname, lastname, email, password, petname, age, species) =>
+  (firstname, lastname, email, password, petname, age, species, avatar) =>
   async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST, payload: { email, password } });
     try {
@@ -19,6 +18,7 @@ export const register =
         petname,
         age,
         species,
+        avatar,
       });
       dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
       //dispatch({type: USER_SIGNIN_SUCCESS, payload: data});
