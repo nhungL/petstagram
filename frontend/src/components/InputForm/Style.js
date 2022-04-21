@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
     width: "180px",
     marginRight: "30px",
     marginTop: "30px",
-    marginBottom: "50px",
+    marginBottom: "75px",
   },
   link: {
     textDecoration: "none",

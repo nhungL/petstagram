@@ -115,7 +115,7 @@ export default function AppBarContent() {
                 </MenuItem>
               </Link>
 
-              <Link to="/settings" className={classes.link}>
+              <Link to="/setting" className={classes.link}>
                 <MenuItem key="settings">
                   <Typography textAlign="center" className={classes.menuItem}>
                     Settings
