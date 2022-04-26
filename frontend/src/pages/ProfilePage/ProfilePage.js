@@ -39,7 +39,7 @@ export default function ProfilePage() {
         <h3>
           {user.firstname} {user.lastname}
         </h3>
-        <div style={{ justifyContent: "center", display: "flex" }}>
+        {/* <div style={{ justifyContent: "center", display: "flex" }}>
           <AvatarGroup max={4}>
             <Avatar alt="Thuy Le" src="YourPicturePath" />
             <Avatar alt="Nhung Luong" src="YourPicturePath" />
@@ -47,7 +47,7 @@ export default function ProfilePage() {
             <Avatar alt="Gourav" src="YourPicturePath" />
             <Avatar alt="Harrier" src="YourPicturePath" />
           </AvatarGroup>
-        </div>
+        </div> */}
 
         <Grid container direction="row" spacing={0}>
           <Grid item xs={12} md={3}>
