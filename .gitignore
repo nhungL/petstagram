@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# google cloud credentials
+tidal-sum-347908-9fc5a9f730e4.json

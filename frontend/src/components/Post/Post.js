@@ -15,6 +15,7 @@ import { styled } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
 import axios from "axios";
+// import bodyparser from "body-parser";
 
 export default function Post() {
   const classes = useStyles();
@@ -24,26 +25,29 @@ export default function Post() {
   const { userInfo } = userSignin;
 
   //Post info
+  const desc = useRef();
   const [postContent, setPostContent] = useState("");
   const [postImage, setPostImage] = useState();
-  const [state, setState] = useState({
-    description: "",
-    author: "",
-  });
+  const [postVideo, setPostVideo] = useState();
+  const [file, setFile] = useState(null);
   const [error, setError] = useState(false);
 
   const [isImageSelected, setIsImageSelected] = useState(false);
+  const [isVideoSelected, setIsVideoSelected] = useState(false);
   const [promptText, setPromptText] = useState(
     "Hi, " + userInfo.firstname + "! How's your day?"
   );
 
+  //Image/Video Upload Related
   //Upload Image
-  const uploadImage = (event) => {
+  const uploadImage = async (event) => {
     setIsImageSelected(true);
     setPromptText("Say something about this photo...");
     const file = event.target.files[0];
+    console.log("go to uploadImage");
+    setFile(file);
     const reader = new FileReader();
-
+    console.log(reader.result);
     reader.addEventListener(
       "load",
       function () {
@@ -51,7 +55,26 @@ export default function Post() {
       },
       false
     );
-
+    if (file) {
+      reader.readAsDataURL(file);
+    }
+  };
+  //Upload Video
+  const uploadVideo = async (event) => {
+    setIsVideoSelected(true);
+    setPromptText("Say something about this video...");
+    const file = event.target.files[0];
+    console.log("go to uploadVideo");
+    setFile(file);
+    const reader = new FileReader();
+    console.log(reader.result);
+    reader.addEventListener(
+      "load",
+      function () {
+        setPostVideo(reader.result);
+      },
+      false
+    );
     if (file) {
       reader.readAsDataURL(file);
     }
@@ -60,38 +83,47 @@ export default function Post() {
   //Delete Image
   const deleteImage = () => {
     setIsImageSelected(false);
+    setFile(null);
     setPostImage("");
     setPromptText("Hi, " + userInfo.firstname + "! How's your day?");
   };
+  //Delete Video
+  const deleteVideo = () => {
+    setIsVideoSelected(false);
+    setFile(null);
+    setPostVideo("");
+    setPromptText("Hi, " + userInfo.firstname + "! How's your day?");
+  };
+
 
   //Submit post to DB
   const submitPost = async (e) => {
     e.preventDefault();
-
-    // const newPost = {
-    //   userId: userInfo._id,
-    //   description: desc.current.value,
-    // }
-    // if (file) {
-    //   const data = new FormData();
-    //   const fileName = Date.now() + file.name;
-    //   data.append("name", fileName);
-    //   data.append("file", file);
-    //   newPost.img = fileName;
-    //   console.log(newPost);
-    //   try {
-    //     await axios.post("/upload", data);
-    //   } catch (err) {}
-    // }
-  //  try {
-  //     setState({ 
-        
-  //       description: description,
-  //      }); 
-  //     // navigate("/account", { state: { email: email, password: password } });
-  //     window.location.reload();
-  //   } catch (err) { }
+    const newPost = {
+      author: userInfo._id,
+      description: desc.current.value,
+    };
+    // console.log(file);
+    const data = new FormData();
+    if (file) {
+      const fileName = Date.now() + file.name;
+      data.append("name", fileName);
+      data.append("imageUpload", file);
+      // console.log(data);
+      try {
+        // console.log("ok");
+        newPost.image = await (await axios.post("/api/upload", data)).data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    try {
+      // console.log("sent");
+      await axios.post("/api/posts", newPost);
+      window.location.reload();
+    } catch (err) { }
     setPostContent("");
+    // console.log('You clicked submit.');
   };
 
   const Input = styled("input")({
@@ -101,59 +133,81 @@ export default function Post() {
   return (
     <div className={classes.post}>
       <div className={classes.pad}>
-        <Grid container direction="column">
-          <div className={classes.top}>
-            <Avatar src={userInfo.avatar} className={classes.avatar}></Avatar>
-            <div className={classes.inputBox}>
-              <TextField
-                placeholder={promptText}
-                variant="outlined"
-                size="small"
-                multiline
-                rows={3}
-                className={classes.inputBox}
-                value={postContent}
-                onChange={(e) => setPostContent(e.target.value)}
-                name="description"
-                id="description"
-                InputProps={{
-                  classes: {
-                    root: classes.input,
-                    focused: classes.focused,
-                    notchedOutline: classes.notchedOutline,
-                  },
-                }}
-              />
-              {isImageSelected && (
-                <div className={classes.postImg}>
-                  <Box
-                    component="img"
-                    sx={{
-                      height: 300,
-                    }}
-                    src={postImage}
-                  />
-                  <IconButton
-                    aria-label="upload picture"
-                    component="span"
-                    onClick={deleteImage}
-                  >
-                    <Close style={{ color: "#C4C4C4" }} />
-                  </IconButton>
-                </div>
-              )}
+        <form className={classes.bottom} onSubmit={submitPost} encType="multipart/form-data">
+          <Grid container direction="column">
+            <div className={classes.top}>
+              <Avatar src={userInfo.avatar} className={classes.avatar}></Avatar>
+              <div className={classes.inputBox}>
+                <TextField
+                  className={classes.inputBox}
+                  placeholder={promptText}
+                  variant="outlined"
+                  size="small"
+                  multiline
+                  rows={3}
+                  value={postContent}
+                  onChange={(e) => setPostContent(e.target.value)}
+                  name="description"
+                  id="description"
+                  inputRef={desc}
+                  InputProps={{
+                    classes: {
+                      root: classes.input,
+                      focused: classes.focused,
+                      notchedOutline: classes.notchedOutline,
+                    },
+                  }}
+                />
+                {isImageSelected && (
+                  <div className={classes.postImg}>
+                    <Box
+                      component="img"
+                      sx={{
+                        height: 300,
+                      }}
+                      src={postImage}
+                    />
+                    <IconButton
+                      aria-label="upload picture"
+                      component="span"
+                      onClick={deleteImage}
+                    >
+                      <Close style={{ color: "#C4C4C4" }} />
+                    </IconButton>
+                  </div>
+                )}
+                {/* {isVideoSelected && (
+                  <div className={classes.postImg}>
+                    <Box
+                      component="img"
+                      // sx={{
+                      //   height: 300,
+                      // }}
+                      src={postVideo}
+                    />
+                    <IconButton
+                      aria-label="upload picture"
+                      component="span"
+                      onClick={deleteVideo}
+                    >
+                      <Close style={{ color: "#C4C4C4" }} />
+                    </IconButton>
+                  </div>
+                )} */}
+              </div>
             </div>
-          </div>
 
-          <form className={classes.bottom} onSubmit={submitPost}>
+            {/* <form className={classes.bottom} onSubmit={submitPost}> */}
             <Grid container direction="row" spacing={0}>
               <Grid item xs>
                 <Stack direction="row" alignItems="center" spacing={2}>
+
                   <label htmlFor="image-button-file">
                     <Input
                       accept="image/*"
                       id="image-button-file"
                       type="file"
+                      name="imageUpload"
                       onChange={uploadImage}
                     />
                     <IconButton
@@ -164,12 +218,14 @@ export default function Post() {
                       <PhotoCamera />
                     </IconButton>
                   </label>
-                  <label htmlFor="video-button-file">
+
+                  {/* <label htmlFor="video-button-file">
                     <Input
                       accept="video/mp4,video/x-m4v,video/*"
                       id="video-button-file"
                       //multiple
                       type="file"
+                      onChange={uploadVideo}
                     />
                     <IconButton
                       aria-label="upload picture"
@@ -179,7 +235,8 @@ export default function Post() {
                     >
                       <VideoLibraryIcon />
                     </IconButton>
-                  </label>
+                  </label> */}
+
                 </Stack>
               </Grid>
               <Grid>
@@ -193,8 +250,9 @@ export default function Post() {
                 </Button>
               </Grid>
             </Grid>
-          </form>
-        </Grid>
+            {/* </form> */}
+          </Grid>
+        </form>
       </div>
     </div >
   );

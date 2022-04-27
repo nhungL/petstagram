@@ -9,6 +9,7 @@ import axios from "axios";
 import { format } from "timeago.js";
 
 export default function PostUI({ post }) {
+    // console.log(post.image);
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
     const [like, setLike] = useState(post.like);
 
@@ -29,7 +30,7 @@ export default function PostUI({ post }) {
     const [user, setUser] = useState({});
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`api/users/${post.author}`);
+            const res = await axios.get(`/api/users/${post.author}`);
             setUser(res.data);
         };
         fetchUser();
