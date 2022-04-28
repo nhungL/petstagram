@@ -4,8 +4,34 @@ import expressAsyncHandler from "express-async-handler";
 import data from "../data.js";
 import User from "../models/userModel.js";
 import { generateToken } from "../utils.js";
+import multer from "multer";
+import { createRequire } from "module";
+const require = createRequire(import.meta.url);
+
+import { v4 as uuidv4 } from "uuid";
+let path = require("path");
 
 const userRouter = express.Router();
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "images");
+  },
+  filename: function (req, file, cb) {
+    cb(null, uuidv4() + "-" + Date.now() + path.extname(file.originalname));
+  },
+});
+
+const fileFilter = (req, file, cb) => {
+  const allowedFileTypes = ["image/jpeg", "image/jpg", "image/png"];
+  if (allowedFileTypes.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(null, false);
+  }
+};
+
+let upload = multer({ storage, fileFilter });
 
 userRouter.get(
   "/seed",
@@ -39,6 +65,7 @@ userRouter.post(
 
 userRouter.post(
   "/register",
+  upload.single("photo"),
   expressAsyncHandler(async (req, res) => {
     const user = new User({
       email: req.body.email,
@@ -48,7 +75,7 @@ userRouter.post(
       petname: req.body.petname,
       age: req.body.age,
       species: req.body.species,
-      avatar: req.body.avatar,
+      avatar: req.body.filename,
     });
     const createdUser = await user.save();
     res.send({

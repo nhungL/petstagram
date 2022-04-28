@@ -34,11 +34,11 @@ export default function InputForm() {
   const [avatar, setAvatar] = useState("avatar.png");
 
   const onImageChange = (e) => {
-    const [file] = e.target.files;
-    setImg(URL.createObjectURL(file));
+    if (e.target.files.length !== 0) {
+      setImg(URL.createObjectURL(e.target.files[0]));
+    }
     setAvatar(e.target.files[0]);
-    alert(avatar);
-    alert(img);
+    console.log(e.target.files[0]);
   };
 
   const cancelHandler = () => {
@@ -71,7 +71,11 @@ export default function InputForm() {
 
   return (
     <div>
-      <form onSubmit={submitHandler}>
+      <form
+        method="post"
+        enctype="multipart/form-data"
+        onSubmit={submitHandler}
+      >
         <div className={classes.background}>
           {error && (
             <Alert
@@ -244,6 +248,7 @@ export default function InputForm() {
                         <input
                           type="file"
                           id="avatar"
+                          name="photo"
                           accept=".png, .jpg, .jpeg"
                           onChange={onImageChange}
                         ></input>
