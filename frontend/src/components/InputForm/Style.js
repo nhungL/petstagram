@@ -46,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#FFB2A6",
     width: "180px",
     marginRight: "30px",
-    marginTop: "30px",
-    marginBottom: "50px",
+    marginTop: "50px",
+    marginBottom: "55px",
   },
   link: {
     textDecoration: "none",

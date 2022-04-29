@@ -163,7 +163,7 @@ export default function InputForm() {
               className={classes.subbutton}
               type="submit"
             >
-              SAVE
+              SUBMIT
             </Button>
             <Link className={classes.link} to="/">
               <Button variant="contained" className={classes.subbutton}>
