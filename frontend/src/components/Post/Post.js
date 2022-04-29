@@ -15,7 +15,6 @@ import { styled } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
 import axios from "axios";
-// import bodyparser from "body-parser";
 
 export default function Post() {
   const classes = useStyles();

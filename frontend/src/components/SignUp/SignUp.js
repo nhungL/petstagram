@@ -42,7 +42,7 @@ export default function SignUp() {
       <form onSubmit={submitHandler}>
         <div className={classes.background}>
           <Grid
-            containter
+            container
             direction="column"
             justifyContent="center"
             alignItems="center"

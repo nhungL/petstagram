@@ -16,13 +16,19 @@ export default function ProfilePage() {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+  // console.log(userInfo._id);
 
   const [user, setUser] = useState({});
   const userId = useParams().id;
   // console.log(userId);
 
+  const [isHost, setIsHost] = useState(false);
+
   useEffect(() => {
     const fetchUser = async () => {
+      if (userInfo._id === userId) {
+        setIsHost(true);
+      }
       const res = await axios.get(`/api/users/${userId}`);
       setUser(res.data);
     };
@@ -51,15 +57,17 @@ export default function ProfilePage() {
 
         <Grid container direction="row" spacing={0}>
           <Grid item xs={12} md={3}>
-            <Introduction />
+            <Introduction userId={userId} />
           </Grid>
 
-          <Grid container direction="column" xs={12} md={5.5}>
+          <Grid container direction="column" item xs={12} md={5.5}>
+            {isHost &&
+              <Grid item>
+                <Post />
+              </Grid>
+            }
             <Grid item>
-              <Post />
-            </Grid>
-            <Grid item>
-              <Feed userId={userId}/>
+              <Feed userId={userId} />
             </Grid>
           </Grid>
 
