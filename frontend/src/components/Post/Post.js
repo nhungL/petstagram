@@ -162,7 +162,8 @@ export default function Post() {
                     <Box
                       component="img"
                       sx={{
-                        height: 300,
+                        height: '100%',
+                        width: '100%',
                       }}
                       src={postImage}
                     />
