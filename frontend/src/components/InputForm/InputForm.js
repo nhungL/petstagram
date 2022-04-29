@@ -31,7 +31,8 @@ export default function InputForm() {
   const navigate = useNavigate();
   useEffect(() => {
     if (userInfo) {
-      navigate("/home");
+      // navigate("/home");
+      window.location = "/home";
     }
   }, [userInfo]);
 

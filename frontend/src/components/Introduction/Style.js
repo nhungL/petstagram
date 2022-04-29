@@ -14,8 +14,8 @@ const useStyles = makeStyles((theme) => ({
     },
     subtitle: {
         color: "#C4C4C4",
-        marginBottom: "40px",
-        fontSize: 12,
+        marginBottom: "10px",
+        fontSize: 13,
     },
     introdata: {
         fontSize: "10pt",
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         marginLeft: "auto",
         marginRight: "20px",
-        marginBottom: "10px",
+        marginBottom: "30px",
     },
     circleicon: {
         marginRight: "10px",
@@ -31,6 +31,38 @@ const useStyles = makeStyles((theme) => ({
     },
     pad: {
         padding: "15px",
+    },
+    button: {
+        maxHeight: "25px",
+        backgroundColor: "#FFB2A6",
+        fontWeight: "bold",
+        marginBottom: "10px",
+    },
+    inputBox: {
+        marginRight: "20px",
+        marginBottom: "5px",
+        width: "100%",
+    },
+    changeIntro: {
+        marginRight: "20px",
+        marginBottom: "30px",
+        width: "100%",
+    },
+    inputIntro: {
+        color: "black",
+        borderRadius: 20,
+        "&$focused $notchedOutline": {
+            borderColor: "#FFB2A6",
+        },
+        fontSize: "10pt",
+    },
+    focused: {},
+    notchedOutline: {},
+    saveButton: {
+        maxHeight:"20px",
+        color: "black",
+        borderColor: "#FFB2A6",
+        marginBottom: "20px",
     },
 }));
 export default useStyles;

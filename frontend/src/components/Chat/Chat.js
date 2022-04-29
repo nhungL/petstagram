@@ -7,7 +7,7 @@ import Friend from "../Friend/Friend";
 const Users = [
   {
     id: 1,
-    profilePicture: "no-profile-picture.png",
+    profilePicture: "https://dthezntil550i.cloudfront.net/ou/latest/ou2009170412086260016840777/1280_960/c446f863-b1b3-47fb-b2ea-87a6aaa9b6ac.png",
     username: "Safak Kocaoglu",
   },
   {
@@ -17,7 +17,7 @@ const Users = [
   },
   {
     id: 3,
-    profilePicture: "no-profile-picture.png",
+    profilePicture: "https://res.cloudinary.com/petstagram/image/upload/v1651197497/Pets_Public/avatar_mjvflj.png",
     username: "Alex Durden",
   },
   {
@@ -27,17 +27,17 @@ const Users = [
   },
   {
     id: 5,
-    profilePicture: "no-profile-picture.png",
+    profilePicture: "https://res.cloudinary.com/petstagram/image/upload/v1651197497/Pets_Public/avatar_mjvflj.png",
     username: "Thomas Holden",
   },
   {
     id: 6,
-    profilePicture: "no-profile-picture.png",
+    profilePicture: "https://res.cloudinary.com/petstagram/image/upload/v1651197497/Pets_Public/avatar_mjvflj.png",
     username: "Shirley Beauchamp",
   },
   {
     id: 7,
-    profilePicture: "no-profile-picture.png",
+    profilePicture: "https://res.cloudinary.com/petstagram/image/upload/v1651197497/Pets_Public/avatar_mjvflj.png",
     username: "Travis Bennett",
   },
   {
@@ -48,7 +48,7 @@ const Users = [
   },
   {
     id: 9,
-    profilePicture: "no-profile-picture.png",
+    profilePicture: "https://wallpaperaccess.com/full/6295120.jpg",
     username: "Gary Duty",
   },
   {

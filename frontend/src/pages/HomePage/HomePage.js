@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import useStyles from "./Style";
 import {
   Alert,
@@ -80,13 +81,17 @@ const HomePage = () => {
   const [chatPopup, setChatPopup] = useState(null);
   const [chatContent, setChatContent] = useState("");
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+  const userId = userInfo._id;
+
   const Input = styled("input")({
     display: "none",
   });
 
   return (
     <div className={classes.background}>
-      <AppBarContent />
+      <AppBarContent userId={userId}/>
       <Container className={classes.container}>
         <div className={classes.titleWrapper}>
           <Typography variant="h6" className={classes.title}>
@@ -94,7 +99,7 @@ const HomePage = () => {
           </Typography>
         </div>
         <Grid container direction="row">
-          <Grid container direction="column" sm>
+          <Grid container direction="column" item sm>
             <Grid>
               <Post />
             </Grid>
