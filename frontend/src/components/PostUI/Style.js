@@ -41,6 +41,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "15px",
     fontWeight: "500",
     margin: "0 10px 5px",
+    color: "black",
   },
 
   postDate: {
@@ -58,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   postImg: {
     marginTop: "20px",
     width: "100%",
-    maxHeight: "500px",
+    flexBasis: "max-content",
     objectFit: "contain",
   },
 
@@ -81,6 +82,43 @@ const useStyles = makeStyles((theme) => ({
     cursor: "pointer",
     borderBottom: "1px dashed gray",
     fontSize: "15px",
+  },
+
+  //for Edit and delete post
+  menuItem: {
+    justifyContent: "flex-end",
+    padding: 0,
+    marginRight: "7px",
+    marginLeft: "7px",
+  },
+  button: {
+    maxHeight: "25px",
+    marginBottom: "7px",
+    color: "black",
+    '&:hover': {
+      color: '#FFB2A6',
+    }
+  },
+  icon: {
+    marginTop: "10px",
+    fontSize: "20px",
+    alignItems:"right",
+  },
+  input: {
+    color: "black",
+    borderRadius: 20,
+    "&$focused $notchedOutline": {
+      borderColor: "#FFB2A6",
+    },
+  },
+  focused: {},
+  notchedOutline: {},
+  dialogButton: {
+    color: "white",
+    backgroundColor: "#FFB2A6",
+    fontWeight: "bold",
+    marginRight: "20px",
+    marginBottom: "20px",
   },
 }));
 export default useStyles;

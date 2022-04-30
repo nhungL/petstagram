@@ -37,8 +37,8 @@ export default function ProfilePage() {
 
   return (
     <div className={classes.background}>
-      <AppBarContent />
-      <Container>
+      <AppBarContent userId={userId}/>
+      <Container className={classes.container} maxWidth>
         <Grid container spacing={0} justifyContent="center">
           <Avatar src={user.avatar} className={classes.avatar}></Avatar>
         </Grid>
@@ -55,7 +55,7 @@ export default function ProfilePage() {
           </AvatarGroup>
         </div> */}
 
-        <Grid container direction="row" spacing={0}>
+        <Grid container direction="row">
           <Grid item xs={12} md={3}>
             <Introduction userId={userId} />
           </Grid>

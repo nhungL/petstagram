@@ -3,8 +3,15 @@ import expressAsyncHandler from "express-async-handler";
 import Post from "../models/postModel.js";
 import User from "../models/userModel.js";
 import { Posts } from "../postData.js";
+import { v2 as cloudinary } from "cloudinary";
 
 const postRouter = express.Router();
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
 // postRouter.get("/seed",
 //     expressAsyncHandler(async (req, res) => {
@@ -30,12 +37,8 @@ postRouter.post("/", async (req, res) => {
 postRouter.put("/:id", async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
-        if (post.userId === res.body.userId) {
             await post.updateOne({ $set: req.body });
             res.status(200).send({ message: "updated your post" });
-        } else {
-            res.status(403).send({ message: "only update your post" });
-        }
     } catch (err) {
         res.status(500).send({ message: "error" });
     }
@@ -43,13 +46,16 @@ postRouter.put("/:id", async (req, res) => {
 
 //delete a post
 postRouter.delete("/:id", async (req, res) => {
+    // console.log(req.params);
     try {
-        const post = await Post.findById(req.params.id);
-        if (post.userId === res.body.userId) {
-            await post.deleteOne();
+        if (req.params.id) {
+            const post = await Post.findById(req.params.id);
+            const imageid = post.imageId;
+            await Post.findByIdAndDelete(req.params.id);
+            await cloudinary.uploader.destroy(imageid);
             res.status(200).send({ message: "deleted your post" });
         } else {
-            res.status(403).send({ message: "only delete your post" });
+            res.status(403).send({ message: "only delete your post", });
         }
     } catch (err) {
         res.status(500).send({ message: "error" });
@@ -93,9 +99,9 @@ postRouter.get("/",
     expressAsyncHandler(async (req, res) => {
         try {
             const allPosts = await Post.find({});
-            if (allPosts){
+            if (allPosts) {
                 res.status(200).send(allPosts);
-            }else{
+            } else {
                 res.status(404).send({ message: 'No Post Not Found.' });
             }
         } catch (err) {
