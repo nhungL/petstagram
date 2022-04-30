@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     isAdmin: { type: Boolean, default: false, required: true },
-    avatar: { type: String, required: false, default: "avatar.png" },
+    avatar: { type: String, required: false, default: "https://res.cloudinary.com/petstagram/image/upload/v1651197497/Pets_Public/avatar_mjvflj.png" },
     petname: { type: String, required: true },
     age: { type: String, required: false },
     species: { type: String, required: false },

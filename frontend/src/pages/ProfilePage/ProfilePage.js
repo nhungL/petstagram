@@ -44,8 +44,8 @@ export default function ProfilePage() {
 
   return (
     <div className={classes.background}>
-      <AppBarContent />
-      <Container>
+      <AppBarContent userId={userId}/>
+      <Container className={classes.container} maxWidth>
         <Grid container spacing={0} justifyContent="center">
           <Avatar src={user.avatar} className={classes.avatar}></Avatar>
         </Grid>
@@ -59,7 +59,6 @@ export default function ProfilePage() {
             <Avatar alt="Harrier" src="YourPicturePath" />
           </AvatarGroup>
         </div> */}
-
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div className={classes.intro}>
             <span className={classes.subtitle}>Join since {year}</span>
