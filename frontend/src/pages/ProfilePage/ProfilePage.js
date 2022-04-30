@@ -1,6 +1,12 @@
 import React from "react";
 import useStyles from "./Style";
-import { AvatarGroup, Container, Avatar, Grid } from "@mui/material";
+import {
+  AvatarGroup,
+  Container,
+  Avatar,
+  Grid,
+  Typography,
+} from "@mui/material";
 import Introduction from "../../components/Introduction/Introduction";
 import Chat from "../../components/Chat/Chat";
 import Post from "../../components/Post/Post";
@@ -23,6 +29,7 @@ export default function ProfilePage() {
   // console.log(userId);
 
   const [isHost, setIsHost] = useState(false);
+  const year = new Date(user.createdAt).getFullYear();
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -42,9 +49,7 @@ export default function ProfilePage() {
         <Grid container spacing={0} justifyContent="center">
           <Avatar src={user.avatar} className={classes.avatar}></Avatar>
         </Grid>
-        <h3>
-          {user.firstname} {user.lastname}
-        </h3>
+        <h3>{user.petname}</h3>
         {/* <div style={{ justifyContent: "center", display: "flex" }}>
           <AvatarGroup max={4}>
             <Avatar alt="Thuy Le" src="YourPicturePath" />
@@ -55,17 +60,25 @@ export default function ProfilePage() {
           </AvatarGroup>
         </div> */}
 
+        <div style={{ display: "flex", justifyContent: "center" }}>
+          <div className={classes.intro}>
+            <span className={classes.subtitle}>Join since {year}</span>
+            <span className={classes.subtitle}>My age: {user.age}</span>
+            <span className={classes.subtitle}>My owner: {user.firstname} {user.lastname}</span>
+          </div>
+        </div>
+
         <Grid container direction="row" spacing={0}>
           <Grid item xs={12} md={3}>
             <Introduction userId={userId} />
           </Grid>
 
           <Grid container direction="column" item xs={12} md={5.5}>
-            {isHost &&
+            {isHost && (
               <Grid item>
                 <Post />
               </Grid>
-            }
+            )}
             <Grid item>
               <Feed userId={userId} />
             </Grid>
