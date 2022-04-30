@@ -76,7 +76,7 @@ const Users = [
   },
 ];
 
-const HomePage = () => {
+export default function HomePage() {
   const classes = useStyles();
   const [chatPopup, setChatPopup] = useState(null);
   const [chatContent, setChatContent] = useState("");
@@ -91,7 +91,7 @@ const HomePage = () => {
 
   return (
     <div className={classes.background}>
-      <AppBarContent userId={userId}/>
+      <AppBarContent userId={userId} />
       <Container className={classes.container}>
         <div className={classes.titleWrapper}>
           <Typography variant="h6" className={classes.title}>
@@ -214,5 +214,3 @@ const HomePage = () => {
     </div>
   );
 };
-
-export default HomePage;
