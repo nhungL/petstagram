@@ -8,9 +8,9 @@ import { v2 as cloudinary } from "cloudinary";
 const postRouter = express.Router();
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
+  cloud_name: process.env.CLOUDINARY_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 // postRouter.get("/seed",
@@ -35,13 +35,10 @@ postRouter.post("/", async (req, res) => {
 
 //update a post
 postRouter.put("/:id", async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-            await post.updateOne({ $set: req.body });
-            res.status(200).send({ message: "updated your post" });
-    } catch (err) {
-        res.status(500).send({ message: "error" });
-    }
+  try {
+    const post = await Post.findById(req.params.id);
+    await post.updateOne({ $set: req.body });
+    res.status(200).send({ message: "updated your post" });
   } catch (err) {
     res.status(500).send({ message: "error" });
   }
@@ -49,19 +46,16 @@ postRouter.put("/:id", async (req, res) => {
 
 //delete a post
 postRouter.delete("/:id", async (req, res) => {
-    // console.log(req.params);
-    try {
-        if (req.params.id) {
-            const post = await Post.findById(req.params.id);
-            const imageid = post.imageId;
-            await Post.findByIdAndDelete(req.params.id);
-            await cloudinary.uploader.destroy(imageid);
-            res.status(200).send({ message: "deleted your post" });
-        } else {
-            res.status(403).send({ message: "only delete your post", });
-        }
-    } catch (err) {
-        res.status(500).send({ message: "error" });
+  // console.log(req.params);
+  try {
+    if (req.params.id) {
+      const post = await Post.findById(req.params.id);
+      const imageid = post.imageId;
+      await Post.findByIdAndDelete(req.params.id);
+      await cloudinary.uploader.destroy(imageid);
+      res.status(200).send({ message: "deleted your post" });
+    } else {
+      res.status(403).send({ message: "only delete your post" });
     }
   } catch (err) {
     res.status(500).send({ message: "error" });
@@ -102,19 +96,20 @@ postRouter.get(
 );
 
 //get timeline posts
-postRouter.get("/",
-    expressAsyncHandler(async (req, res) => {
-        try {
-            const allPosts = await Post.find({});
-            if (allPosts) {
-                res.status(200).send(allPosts);
-            } else {
-                res.status(404).send({ message: 'No Post Not Found.' });
-            }
-        } catch (err) {
-            res.status(500).send({ message: "error" });
-        }
-    })
+postRouter.get(
+  "/",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const allPosts = await Post.find({});
+      if (allPosts) {
+        res.status(200).send(allPosts);
+      } else {
+        res.status(404).send({ message: "No Post Not Found." });
+      }
+    } catch (err) {
+      res.status(500).send({ message: "error" });
+    }
+  })
 );
 
 //get user's all posts: get by userId

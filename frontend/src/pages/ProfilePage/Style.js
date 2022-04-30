@@ -2,7 +2,11 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   background: {
+    display: "flex",
+    flexDirection: "column",
     backgroundColor: "#F0F0F0",
+    alignItems: "center",
+    minHeight: "100vh",
   },
   avatar: {
     marginTop: "20px",
@@ -31,6 +35,6 @@ const useStyles = makeStyles((theme) => ({
   subtitle: {
     marginBottom: "10px",
     fontSize: 13,
-},
+  },
 }));
 export default useStyles;
