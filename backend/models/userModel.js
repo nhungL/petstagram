@@ -18,7 +18,10 @@ const userSchema = new mongoose.Schema(
         required: false,
       },
     ],
-    introduction: {type: String, required: false},
+    introduction: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,

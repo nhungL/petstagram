@@ -243,30 +243,25 @@ export default function PostUI({ post }) {
                         </div>
                     }
                 </div >
-
-                <div className={classes.postCenter}>
-                    <span className={classes.postText} align="left">
-                        {post.description}
-                    </span>
-                    <img
-                        className={classes.postImg}
-                        src={post.image}
-                        alt=""
-                    />
-                </div>
-
-                <div className={classes.postBottom}>
-                    <div className={classes.postBottomLeft}>
-                        <Button
-                            className={classes.likeIcon}
-                            startIcon={<Favorite />}
-                            onClick={likeHandler}
-                            style={{ color: isLiked ? "#E33A15" : "#C4C4C4" }}
-                        />
-                        <span className={classes.postLikeCounter}>{like}</span>
-                    </div>
-                </div>
-            </div>
+        <div className={classes.postCenter}>
+          <span className={classes.postText} align="left">
+            {post.description}
+          </span>
+          <img className={classes.postImg} src={post.image} alt="" />
         </div>
-    );
+
+        <div className={classes.postBottom}>
+          <div className={classes.postBottomLeft}>
+            <Button
+              className={classes.likeIcon}
+              startIcon={<Favorite />}
+              onClick={likeHandler}
+              style={{ color: isLiked ? "#E33A15" : "#C4C4C4" }}
+            />
+            <span className={classes.postLikeCounter}>{like}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }

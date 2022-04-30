@@ -22,15 +22,15 @@ cloudinary.config({
 
 //create a post
 postRouter.post("/", async (req, res) => {
-    // console.log(req.body)
-    // console.log(req)
-    const newPost = new Post(req.body)
-    try {
-        const savedPost = await newPost.save();
-        res.status(200).json(savedPost);
-    } catch (err) {
-        res.status(500).json(err);
-    }
+  // console.log(req.body)
+  // console.log(req)
+  const newPost = new Post(req.body);
+  try {
+    const savedPost = await newPost.save();
+    res.status(200).json(savedPost);
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 //update a post
@@ -42,6 +42,9 @@ postRouter.put("/:id", async (req, res) => {
     } catch (err) {
         res.status(500).send({ message: "error" });
     }
+  } catch (err) {
+    res.status(500).send({ message: "error" });
+  }
 });
 
 //delete a post
@@ -60,38 +63,42 @@ postRouter.delete("/:id", async (req, res) => {
     } catch (err) {
         res.status(500).send({ message: "error" });
     }
+  } catch (err) {
+    res.status(500).send({ message: "error" });
+  }
 });
 
 //like-dislike a post
 postRouter.put("/:id/like", async (req, res) => {
-    try {
-        const post = await Post.findById(req.params.id);
-        if (!post.like.includes(req.body.userId)) {
-            await post.updateOne({ $push: { like: req.body.userId } });
-            res.status(200).send({ message: "liked your post" });
-        } else {
-            await post.updateOne({ $pull: { like: req.body.userId } });
-            res.status(200).send({ message: "disliked your post" });
-        }
-    } catch (err) {
-        res.status(500).send({ message: "error" });
+  try {
+    const post = await Post.findById(req.params.id);
+    if (!post.like.includes(req.body.userId)) {
+      await post.updateOne({ $push: { like: req.body.userId } });
+      res.status(200).send({ message: "liked your post" });
+    } else {
+      await post.updateOne({ $pull: { like: req.body.userId } });
+      res.status(200).send({ message: "disliked your post" });
     }
+  } catch (err) {
+    res.status(500).send({ message: "error" });
+  }
 });
 
 //get a post
-postRouter.get("/:id",
-    expressAsyncHandler(async (req, res) => {
-        try {
-            const post = await Post.findById(req.params.id);
-            if (post) {
-                res.status(200).send(post);
-            } else {
-                res.status(404).send({ message: 'Post Not Found.' });
-            }
-        } catch (err) {
-            res.status(500).send({ message: "error" });
-        }
-    })
+postRouter.get(
+  "/:id",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const post = await Post.findById(req.params.id);
+      if (post) {
+        res.status(200).send(post);
+      } else {
+        res.status(404).send({ message: "Post Not Found." });
+      }
+    } catch (err) {
+      res.status(500).send({ message: "error" });
+    }
+  })
 );
 
 //get timeline posts
@@ -112,15 +119,15 @@ postRouter.get("/",
 
 //get user's all posts: get by userId
 postRouter.get("/profile/:id", async (req, res) => {
-    try {
-        const currentUser = await User.findById(req.params.id);
-        const userPosts = await Post.find({ author: currentUser._id });
-        // console.log(userPosts);
-        res.status(200).send(userPosts);
-        return userPosts;
-    } catch (err) {
-        res.status(500).send({ message: "error" });
-    }
+  try {
+    const currentUser = await User.findById(req.params.id);
+    const userPosts = await Post.find({ author: currentUser._id });
+    // console.log(userPosts);
+    res.status(200).send(userPosts);
+    return userPosts;
+  } catch (err) {
+    res.status(500).send({ message: "error" });
+  }
 });
 
 export default postRouter;
