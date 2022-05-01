@@ -65,9 +65,9 @@ export default function InputForm() {
           const ava = await (await axios.post("/api/upload", data)).data;
           console.log(ava);
           const image = ava.toString();
-          avatarr = image;
+          avatarr = ava.path;
           setAvatar(image);
-          console.log(avatar);
+          console.log(avatarr);
         } catch (err) {
           console.log(err);
         }
