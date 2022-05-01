@@ -2,7 +2,11 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   background: {
+    display: "flex",
+    flexDirection: "column",
     backgroundColor: "#F0F0F0",
+    alignItems: "center",
+    minHeight: "100vh",
   },
   avatar: {
     marginTop: "20px",
@@ -11,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     width: "100vw",
-    height: "100hw",
+    height: "100%",
   },
   post: {
     backgroundColor: "#FFFFFF",
@@ -22,6 +26,15 @@ const useStyles = makeStyles((theme) => ({
   },
   pad: {
     padding: "15px",
+  },
+  intro: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+  },
+  subtitle: {
+    marginBottom: "10px",
+    fontSize: 13,
   },
 }));
 export default useStyles;

@@ -4,10 +4,8 @@ import userRouter from "./routers/userRouter.js";
 import postRouter from "./routers/postRouter.js";
 import dotenv from "dotenv";
 import multer from "multer";
-import path from "path";
 import { v2 as cloudinary } from "cloudinary";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
-import data from "./data.js";
 
 dotenv.config();
 const app = express();
@@ -19,22 +17,6 @@ mongoose.connect(
   process.env.MONGODB_URL ||
     "mongodb+srv://admin:1234@petstagramdb.eiljr.mongodb.net/PetstagramDB?retryWrites=true"
 );
-
-// //Misc
-const __dirname = path.resolve();
-app.use(
-  "/images",
-  express.static(path.join(__dirname, "public/images/testImage"))
-);
-
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "public/images/testImage");
-//   },
-//   filename: (req, file, cb) => {
-//     cb(null, req.body.name);
-//   },
-// });
 
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_NAME,
@@ -55,9 +37,10 @@ const upload = multer({ storage: storage });
 app.post("/api/upload", upload.single("imageUpload"), function (req, res) {
   try {
     // console.log("in upload backend");
-    // console.log(req.body, req.file);
+    // console.log(req.file);
     const filePath = req.file.path;
-    return res.status(200).json(filePath);
+    const imageId = req.file.filename;
+    return res.status(200).json({path : filePath, imageid: imageId});
   } catch (error) {
     console.error(error);
   }

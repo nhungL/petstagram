@@ -9,8 +9,11 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "25px",
   },
   listLayout: {
-    height: "500",
-    width: "auto",
+    display: "grid",
+    gridTemplateRows: "repeat(5, min-content)",
+    gridAutoFlow: "column",
+    height: "100",
+    overflow: "auto",
   },
 }));
 export default useStyles;

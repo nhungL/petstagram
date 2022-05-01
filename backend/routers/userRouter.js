@@ -79,4 +79,24 @@ userRouter.get(
     }
   })
 );
+
+userRouter.put(
+  "/intro",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      User.findByIdAndUpdate(
+        req.body.id,
+        {
+          $set: { introduction: req.body.intro },
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  })
+);
+
 export default userRouter;
