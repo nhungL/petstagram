@@ -107,10 +107,11 @@ export default function Post() {
       const fileName = Date.now() + file.name;
       data.append("name", fileName);
       data.append("imageUpload", file);
-      // console.log(data);
       try {
         // console.log("ok");
-        newPost.image = await (await axios.post("/api/upload", data)).data;
+        const res = await (await axios.post("/api/upload", data)).data;
+        newPost.image = res.path;
+        newPost.imageId = res.imageid;
       } catch (err) {
         console.log(err);
       }
@@ -121,7 +122,6 @@ export default function Post() {
       window.location.reload();
     } catch (err) {}
     setPostContent("");
-    // console.log('You clicked submit.');
   };
 
   const Input = styled("input")({
@@ -165,7 +165,8 @@ export default function Post() {
                     <Box
                       component="img"
                       sx={{
-                        height: 300,
+                        height: '100%',
+                        width: '100%',
                       }}
                       src={postImage}
                     />
@@ -199,7 +200,6 @@ export default function Post() {
               </div>
             </div>
 
-            {/* <form className={classes.bottom} onSubmit={submitPost}> */}
             <Grid container direction="row" spacing={0}>
               <Grid item xs>
                 <Stack direction="row" alignItems="center" spacing={2}>
@@ -250,7 +250,6 @@ export default function Post() {
                 </Button>
               </Grid>
             </Grid>
-            {/* </form> */}
           </Grid>
         </form>
       </div>

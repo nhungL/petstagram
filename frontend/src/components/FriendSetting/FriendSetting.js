@@ -1,7 +1,7 @@
 import React from "react";
 import useStyles from "./Style";
-import { FixedSizeList } from 'react-window';
-import { Grid, Typography, ListItem} from "@mui/material";
+import { FixedSizeList } from "react-window";
+import { Grid, Typography, ListItem } from "@mui/material";
 import FriendDetail from "../FriendDetail/FriendDetail";
 
 const Users = [
@@ -86,18 +86,13 @@ export default function FriendSetting() {
   const classes = useStyles();
   return (
     <div className={classes.background}>
-      <Typography variant="h6" align="left" className={classes.title}>
-        100 Friends
-      </Typography>
-      <FixedSizeList
-        className={classes.listLayout}
-        height={500}
-        itemSize={46}
-        itemCount={1}
-        overscanCount={5}
-      >
-        {renderFriend}
-      </FixedSizeList>
+      <div>
+        <ul className={classes.listLayout}>
+          {Users.map((u) => (
+            <FriendDetail key={u.id} user={u} />
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
