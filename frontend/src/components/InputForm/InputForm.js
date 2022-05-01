@@ -54,22 +54,18 @@ export default function InputForm() {
         "https://res.cloudinary.com/petstagram/image/upload/v1651270278/Pets_Post/yj5ouvudvivumxph82kw.png";
     } else {
       // first upload the image to cloudinary
-      //uploadImage(previewSource);
-      console.log("save image");
-      console.log(file);
+
       const data = new FormData();
       if (file) {
         const fileName = Date.now() + file.name;
         data.append("name", fileName);
         data.append("imageUpload", file);
-        console.log(data);
+
         try {
-          console.log("sent");
           const ava = await (await axios.post("/api/upload", data)).data;
           console.log(ava);
           const image = ava.toString();
           avatarr = image;
-          console.log(image);
           setAvatar(image);
           console.log(avatar);
         } catch (err) {
