@@ -17,12 +17,15 @@ app.use(express.urlencoded({ extended: true }));
 
 mongoose.connect(
   process.env.MONGODB_URL ||
-  "mongodb+srv://admin:1234@petstagramdb.eiljr.mongodb.net/PetstagramDB?retryWrites=true"
+    "mongodb+srv://admin:1234@petstagramdb.eiljr.mongodb.net/PetstagramDB?retryWrites=true"
 );
 
 // //Misc
 const __dirname = path.resolve();
-app.use("/images", express.static(path.join(__dirname, "public/images/testImage")));
+app.use(
+  "/images",
+  express.static(path.join(__dirname, "public/images/testImage"))
+);
 
 // const storage = multer.diskStorage({
 //   destination: (req, file, cb) => {
@@ -42,14 +45,14 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
   cloudinary: cloudinary,
   params: {
-    folder: 'Pets_Post',
-    allowedFormats: ['jpeg', 'png', 'jpg']
-  }
+    folder: "Pets_Post",
+    allowedFormats: ["jpeg", "png", "jpg"],
+  },
 });
 
 const upload = multer({ storage: storage });
 
-app.post("/api/upload", upload.single('imageUpload'), function (req, res) {
+app.post("/api/upload", upload.single("imageUpload"), function (req, res) {
   try {
     // console.log("in upload backend");
     // console.log(req.body, req.file);
@@ -58,8 +61,7 @@ app.post("/api/upload", upload.single('imageUpload'), function (req, res) {
   } catch (error) {
     console.error(error);
   }
-}
-);
+});
 
 app.use("/api/posts", postRouter);
 

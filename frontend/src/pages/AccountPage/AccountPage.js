@@ -2,7 +2,7 @@ import React from "react";
 import useStyles from "./Style";
 import { Grid, Typography } from "@mui/material";
 import UserDetail from "../../components/UserDetail/UserDetail";
-import AvatarForm from "../../components/AvatarForm/AvatarForm";
+
 export default function AccountPage() {
   const classes = useStyles();
   return (
@@ -14,9 +14,9 @@ export default function AccountPage() {
         <Grid item className={classes.layout}>
           <UserDetail />
         </Grid>
-        <Grid item className={classes.layout}>
+        {/* <Grid item className={classes.layout}>
           <AvatarForm />
-        </Grid>
+        </Grid> */}
       </Grid>
     </div>
   );

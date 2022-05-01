@@ -1,6 +1,7 @@
 import { Button, Card, Divider, Grid, Typography } from "@mui/material";
 import React, { useState } from "react";
 import useStyles from "./Style";
+import Axios from "axios";
 
 export default function AvatarForm() {
   const classes = useStyles();
