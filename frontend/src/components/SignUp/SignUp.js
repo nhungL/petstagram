@@ -45,7 +45,7 @@ export default function SignUp() {
             container
             direction="column"
             justifyContent="center"
-            alignItems="center"
+            //alignItems="center"
           >
             <Grid item>
               <Typography variant="h4" align="left" className={classes.title}>
