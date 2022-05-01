@@ -248,14 +248,6 @@ export default function InputForm() {
                   marginLeft: "30px",
                 }}
               >
-                {/* <Typography
-                  variant="h6"
-                  align="left"
-                  className={classes.title2}
-                >
-                  AVATAR
-                </Typography>
-                <Divider className={classes.line}></Divider> */}
                 <img src={img} alt="avatar" className={classes.image} />
                 {changedPicture ? (
                   <div>
