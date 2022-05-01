@@ -48,6 +48,7 @@ userRouter.post(
       petname: req.body.petname,
       age: req.body.age,
       species: req.body.species,
+      avatar: req.body.avatar,
     });
     const createdUser = await user.save();
     res.send({
@@ -59,19 +60,21 @@ userRouter.post(
       avatar: createdUser.avatar,
       petname: createdUser.petname,
       age: createdUser.age,
+      avatar: createdUser.avatar,
       species: createdUser.species,
       token: generateToken(createdUser),
     });
   })
 );
 
-userRouter.get("/:id", 
+userRouter.get(
+  "/:id",
   expressAsyncHandler(async (req, res) => {
-    try{
+    try {
       const user = await User.findById(req.params.id);
-      const { password, ...other} = user._doc;
+      const { password, ...other } = user._doc;
       res.status(200).json(other);
-    }catch (err) {
+    } catch (err) {
       res.status(500).json(err);
     }
   })

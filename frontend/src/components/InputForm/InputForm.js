@@ -21,7 +21,7 @@ export default function InputForm() {
   const [age, setAge] = useState(0);
   const [petName, setpetName] = useState("");
   const [species, setSpecies] = useState("");
-
+  const [avatar, setAvatar] = useState("");
   const { state } = useLocation();
   const { email, password } = state;
 
@@ -30,27 +30,15 @@ export default function InputForm() {
   const dispatch = useDispatch();
 
   const [changedPicture, setchangedPicture] = useState(false);
-  const [previewSource, setPreviewSource] = useState();
-
   const [img, setImg] = useState("avatar.png");
   const [file, setFile] = useState(null);
-  const [avatar, setAvatar] = useState("avatar.png");
 
   const onImageChange = (e) => {
     if (e.target.files.length !== 0) {
       const selectedFile = e.target.files[0];
       setFile(selectedFile);
-      previewFile(selectedFile);
       setImg(URL.createObjectURL(selectedFile));
     }
-  };
-
-  const previewFile = (file) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setPreviewSource(reader.result);
-    };
   };
 
   const cancelHandler = () => {
@@ -60,46 +48,47 @@ export default function InputForm() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-
+    var avatarr;
     if (!changedPicture) {
-      dispatch(
-        register(firstName, lastName, email, password, petName, age, species)
-      );
+      avatarr =
+        "https://res.cloudinary.com/petstagram/image/upload/v1651270278/Pets_Post/yj5ouvudvivumxph82kw.png";
+    } else {
+      // first upload the image to cloudinary
+      //uploadImage(previewSource);
+      console.log("save image");
+      console.log(file);
+      const data = new FormData();
+      if (file) {
+        const fileName = Date.now() + file.name;
+        data.append("name", fileName);
+        data.append("imageUpload", file);
+        console.log(data);
+        try {
+          console.log("sent");
+          const ava = await (await axios.post("/api/upload", data)).data;
+          console.log(ava);
+          const image = ava.toString();
+          avatarr = image;
+          console.log(image);
+          setAvatar(image);
+          console.log(avatar);
+        } catch (err) {
+          console.log(err);
+        }
+      }
     }
-    // first upload the image to cloudinary
-    //uploadImage(previewSource);
-
-    // const data = new FormData();
-    // if (file) {
-    //   const fileName = Date.now() + file.name;
-    //   data.append("name", fileName);
-    //   data.append("imageUpload", file);
-    //   // console.log(data);
-    //   try {
-    //     const ava = await (await axios.post("/api/upload", data)).data;
-    //     console.log(ava);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // }
-
-    // try {
-    // } catch (err) {
-    //   console.log(err);
-    // }
-  };
-
-  const uploadImage = async (base64EncodedImage) => {
-    console.log(base64EncodedImage);
-    try {
-      await fetch("/api/uploadImage", {
-        method: "POST",
-        body: JSON.stringify({ data: base64EncodedImage }),
-        headers: { "Content-type": "application/json" },
-      });
-    } catch (error) {
-      console.error(error);
-    }
+    dispatch(
+      register(
+        firstName,
+        lastName,
+        email,
+        password,
+        petName,
+        age,
+        species,
+        avatarr
+      )
+    );
   };
 
   const navigate = useNavigate();
@@ -320,9 +309,6 @@ export default function InputForm() {
           </Grid>
         </div>
       </form>
-      {previewSource && (
-        <img src={previewSource} alt="chosen" style={{ height: "300px" }} />
-      )}
     </div>
   );
 }

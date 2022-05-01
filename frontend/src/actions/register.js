@@ -7,7 +7,7 @@ import {
 import Axios from "axios";
 
 export const register =
-  (firstname, lastname, email, password, petname, age, species) =>
+  (firstname, lastname, email, password, petname, age, species, avatar) =>
   async (dispatch) => {
     dispatch({ type: USER_REGISTER_REQUEST, payload: { email, password } });
     try {
@@ -19,9 +19,10 @@ export const register =
         petname,
         age,
         species,
+        avatar,
       });
       dispatch({ type: USER_REGISTER_SUCCESS, payload: data });
-      //dispatch({type: USER_SIGNIN_SUCCESS, payload: data});
+      dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
       localStorage.setItem("userInfo", JSON.stringify(data));
     } catch (err) {
       dispatch({

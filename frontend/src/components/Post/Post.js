@@ -94,7 +94,6 @@ export default function Post() {
     setPromptText("Hi, " + userInfo.firstname + "! How's your day?");
   };
 
-
   //Submit post to DB
   const submitPost = async (e) => {
     e.preventDefault();
@@ -120,7 +119,7 @@ export default function Post() {
       // console.log("sent");
       await axios.post("/api/posts", newPost);
       window.location.reload();
-    } catch (err) { }
+    } catch (err) {}
     setPostContent("");
     // console.log('You clicked submit.');
   };
@@ -132,7 +131,11 @@ export default function Post() {
   return (
     <div className={classes.post}>
       <div className={classes.pad}>
-        <form className={classes.bottom} onSubmit={submitPost} encType="multipart/form-data">
+        <form
+          className={classes.bottom}
+          onSubmit={submitPost}
+          encType="multipart/form-data"
+        >
           <Grid container direction="column">
             <div className={classes.top}>
               <Avatar src={userInfo.avatar} className={classes.avatar}></Avatar>
@@ -200,7 +203,6 @@ export default function Post() {
             <Grid container direction="row" spacing={0}>
               <Grid item xs>
                 <Stack direction="row" alignItems="center" spacing={2}>
-
                   <label htmlFor="image-button-file">
                     <Input
                       accept="image/*"
@@ -235,7 +237,6 @@ export default function Post() {
                       <VideoLibraryIcon />
                     </IconButton>
                   </label> */}
-
                 </Stack>
               </Grid>
               <Grid>
@@ -253,6 +254,6 @@ export default function Post() {
           </Grid>
         </form>
       </div>
-    </div >
+    </div>
   );
 }

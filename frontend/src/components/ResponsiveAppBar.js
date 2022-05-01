@@ -46,7 +46,7 @@ const ResponsiveAppBar = () => {
             component="div"
             sx={{ mr: 2, display: { xs: "none", md: "flex" } }}
           >
-            <img src="Logo.png" alt="logo" width="150" height="auto" />
+            <img src={userInfo.avatar} alt="logo" width="150" height="auto" />
           </Typography>
 
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
