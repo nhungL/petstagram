@@ -20,28 +20,30 @@ export default function FriendCard(props) {
     //follow user
     if (!follow) {
       setFollow(true);
-      console.log(userInfo._id);
-      await axios.put("/api/users/following", {
-        id: userInfo._id,
-        followed: props.id,
-      });
-      await axios.put("/api/users/followers", {
-        id: props.id,
-        follow: userInfo._id,
-      });
+      axios.all([
+        axios.put("/api/users/followers", {
+          id: props.id,
+          follow: userInfo._id,
+        }),
+        axios.put("/api/users/following", {
+          id: userInfo._id,
+          followed: props.id,
+        }),
+      ]);
     }
     //unfollow user
     else {
       setFollow(false);
-      console.log(userInfo._id);
-      await axios.put("/api/users/unfollowing", {
-        id: userInfo._id,
-        followed: props.id,
-      });
-      await axios.put("/api/users/followers", {
-        id: props.id,
-        follow: userInfo._id,
-      });
+      axios.all([
+        axios.put("/api/users/unfollowers", {
+          id: props.id,
+          follow: userInfo._id,
+        }),
+        axios.put("/api/users/unfollowing", {
+          id: userInfo._id,
+          followed: props.id,
+        }),
+      ]);
     }
   };
 

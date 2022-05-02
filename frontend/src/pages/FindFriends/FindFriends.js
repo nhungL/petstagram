@@ -6,6 +6,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
 import FriendCard from "../../components/FriendCard/FriendCard";
 import SentimentVeryDissatisfiedIcon from "@mui/icons-material/SentimentVeryDissatisfied";
+import { useSelector } from "react-redux";
 
 export default function FindFriends() {
   const classes = useStyles();
@@ -18,30 +19,29 @@ export default function FindFriends() {
   const [avatar, setAvatar] = useState("");
   const [follow, setFollow] = useState(false);
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const searchHandler = async () => {
     console.log(email);
     if (email === "") {
       setSearch(true);
-      console.log(search);
     } else {
-      console.log("find friend");
       const users = await (
         await axios.get("/api/users/searchUser/" + email)
       ).data;
       if (users.length === 0) {
-        console.log("no friend");
         setGotUser(false);
-        console.log(gotUser);
       } else {
         console.log(users);
         setSearch(true);
-        console.log(users[0]);
-        console.log(search);
         setGotUser(true);
         const user = users[0];
         console.log(user._id);
-        const bool = user.following.includes(user._id);
+        console.log(userInfo);
+        const bool = userInfo.following.includes(user._id);
         console.log(bool);
+
         console.log(follow);
         setFirstName(user.firstname);
         setLastName(user.lastname);
@@ -52,10 +52,7 @@ export default function FindFriends() {
     }
   };
 
-  const renderFriendList = (firstname, lastname, id, avatar, follow) => {
-    console.log("print card");
-    console.log(follow);
-
+  const renderFriendList = () => {
     return (
       <FriendCard
         firstname={firstname}
@@ -98,7 +95,7 @@ export default function FindFriends() {
       <div>
         {search ? (
           gotUser ? (
-            renderFriendList(firstname, lastname, id, avatar, follow)
+            renderFriendList()
           ) : (
             <Grid
               container

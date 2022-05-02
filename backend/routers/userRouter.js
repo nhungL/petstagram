@@ -28,6 +28,8 @@ userRouter.post(
           email: user.email,
           avatar: user.avatar,
           isAdmin: user.isAdmin,
+          followers: user.followers,
+          following: user.following,
           token: generateToken(user),
         });
         return;
@@ -62,6 +64,8 @@ userRouter.post(
       age: createdUser.age,
       avatar: createdUser.avatar,
       species: createdUser.species,
+      followers: createdUser.followers,
+      following: createdUser.following,
       token: generateToken(createdUser),
     });
   })
@@ -99,9 +103,12 @@ userRouter.put(
   "/following/",
   expressAsyncHandler(async (req, res) => {
     try {
+      console.log("hi");
       const user = await User.findByIdAndUpdate(req.body.id, {
         $push: { following: req.body.followed },
       });
+      console.log("hi2");
+      res.status(200).send({ message: "update following" });
     } catch (error) {
       console.error(error);
     }
@@ -129,6 +136,7 @@ userRouter.put(
       const user = await User.findByIdAndUpdate(req.body.id, {
         $pull: { followers: req.body.follow },
       });
+      console.log("hi3");
     } catch (error) {
       console.error(error);
     }
@@ -141,8 +149,9 @@ userRouter.put(
   expressAsyncHandler(async (req, res) => {
     try {
       const user = await User.findByIdAndUpdate(req.body.id, {
-        $pull: { followers: req.body.followed },
+        $pull: { following: req.body.followed },
       });
+      console.log("hi4");
     } catch (error) {
       console.error(error);
     }
