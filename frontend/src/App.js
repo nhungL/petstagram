@@ -10,6 +10,7 @@ import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import MapPage from "./pages/MapPage/MapPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
+import FindFriends from "./pages/FindFriends/FindFriends";
 
 function App() {
   // const userSignin = useSelector((state) => state.userSignin);
@@ -28,6 +29,7 @@ function App() {
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/map" element={<MapPage />} />
+          <Route path="/find-friends" element={<FindFriends />} />
           <Route path="*" element={<UnfoundPage />} />
         </Routes>
       </BrowserRouter>

@@ -86,6 +86,21 @@ export default function AppBarContent() {
                 About Us
               </Button>
             </Link>
+
+            <Link to="/find-friends" className={classes.link}>
+              <Button
+                key="findfriends"
+                sx={{
+                  my: 2,
+                  marginLeft: "20px",
+                  fontWeight: "bold",
+                  color: "#FFB2A6",
+                  display: "block",
+                }}
+              >
+                Find Friends
+              </Button>
+            </Link>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
