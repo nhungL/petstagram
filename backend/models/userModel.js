@@ -11,14 +11,9 @@ const userSchema = new mongoose.Schema(
     petname: { type: String, required: true },
     age: { type: String, required: false },
     species: { type: String, required: false },
-    post: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Post",
-        required: false,
-      },
-    ],
-    introduction: { type: String, required: false },
+    numPosts: { type: Number, required: false, default: 0 },
+    numLikes: { type: Number, required: false, default: 0 },
+    introduction: { type: String, required: false, default: "Hi everyone!" },
     followers: [
       {
         type: mongoose.Schema.Types.ObjectId,

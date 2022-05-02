@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import useStyles from "./Style";
 import {
   Button,
@@ -22,6 +22,15 @@ export default function Post() {
   //Get current user info
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
+  const [user, setUser] = useState({});
+  useEffect(() => {
+    const fetchUser = async () => {
+      const res = await axios.get(`/api/users/${userInfo._id}`);
+      setUser(res.data);
+    };
+    fetchUser();
+  }, [userInfo._id]);
 
   //Post info
   const desc = useRef();
@@ -119,6 +128,11 @@ export default function Post() {
     try {
       // console.log("sent");
       await axios.post("/api/posts", newPost);
+      const count = user.numPosts + 1;
+      const countPost = { 
+        numPosts: count, 
+      }
+      await axios.put(`/api/users/${userInfo._id}`, countPost);
       window.location.reload();
     } catch (err) {}
     setPostContent("");

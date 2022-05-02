@@ -27,19 +27,24 @@ export default function Introduction({ userId }) {
       setUser(res.data);
     };
     fetchUser();
+    console.log(user);
     setIntroContent(user.introduction);
   }, [userId, userInfo, user.introduction]);
 
   const submitIntro = async (e) => {
     e.preventDefault();
+    const updatedIntro = {
+      _id: userId,
+      introduction: intro.current.value,
+    };
+    console.log(updatedIntro);
     try {
-      await axios.put("/api/users/intro", {
-        id: userId,
-        intro: intro.current.value,
-      });
+      await axios.put(`/api/users/${userId}`, updatedIntro);
     } catch (err) {
       console.log(err);
     }
+    setIntroContent(intro.current.value);
+    window.location.reload();
   };
 
   return (
@@ -111,7 +116,7 @@ export default function Introduction({ userId }) {
                 sx={{ color: "#A890DB" }}
               />
               <span>Posts</span>
-              <Typography className={classes.introdata}>###</Typography>
+              <Typography className={classes.introdata}>{user.numPosts}</Typography>
             </Typography>
 
             <Typography className={classes.introdata}>
@@ -120,15 +125,6 @@ export default function Introduction({ userId }) {
                 sx={{ color: "#A890DB" }}
               />
               <span>Friends</span>
-              <Typography className={classes.introdata}>###</Typography>
-            </Typography>
-
-            <Typography className={classes.introdata}>
-              <CircleIcon
-                className={classes.circleicon}
-                sx={{ color: "#A890DB" }}
-              />
-              <span>Likes</span>
               <Typography className={classes.introdata}>###</Typography>
             </Typography>
           </Typography>
