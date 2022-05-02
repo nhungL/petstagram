@@ -13,11 +13,12 @@ export default function FriendCard(props) {
               <Avatar
                 sx={{ width: 60, height: 60 }}
                 className={classes.avatar}
+                src={props.avatar}
               ></Avatar>
             </Grid>
             <Grid item>
               <Typography variant="h6" className={classes.name}>
-                Name
+                {props.firstname} {props.lastname}
               </Typography>
             </Grid>
             <Grid item>

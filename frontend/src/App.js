@@ -29,7 +29,7 @@ function App() {
           <Route path="/about-us" element={<AboutUsPage />} />
           <Route path="/settings" element={<SettingPage />} />
           <Route path="/map" element={<MapPage />} />
-          <Route path="/find-friends" element={<FindFriends />} />
+          <Route path="/find-friends" exact element={<FindFriends />} />
           <Route path="*" element={<UnfoundPage />} />
         </Routes>
       </BrowserRouter>
