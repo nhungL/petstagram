@@ -20,8 +20,6 @@ import DialogTitle from '@mui/material/DialogTitle';
 
 
 export default function PostUI({ post }) {
-    const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-
     //get current user
     const userSignin = useSelector((state) => state.userSignin);
     const { userInfo } = userSignin;
@@ -41,48 +39,19 @@ export default function PostUI({ post }) {
         };
         fetchUser();
     }, [post.author]);
-    console.log(user);
 
     //Handle like/dislike feature
-    console.log(user.numLikes);
     const [like, setLike] = useState(post.like.length);
     const [isLiked, setIsLiked] = useState(false);
-    const [totalLike, setTotalLike] = useState(user.numLikes);
-    const [isTotalLikeSet, setIsTotalLikeSet] = useState(false);
     useEffect(() => {
         setIsLiked(post.like.includes(userInfo._id));
     }, [userInfo._id, post.like]);
-    useEffect(() => {
-        setTotalLike(user.numLikes);
-        setIsTotalLikeSet(true);
-    }, [user]);
-    
-    useEffect (() => {
-        if (isTotalLikeSet) {
-            updateLike();
-        }
-    }, [isTotalLikeSet]);
-        
-    const updateLike = async (e) => {
-        try {
-            const updatedLike = {
-                numLikes: totalLike,
-            }
-            await axios.put(`/api/users/${userId}`, updatedLike);
-            setIsTotalLikeSet(false);
-        } catch (err) { }
-    };
-
     const likeHandler = async (e) => {
         e.preventDefault();
-        console.log(isLiked);
         try {
             axios.put("/api/posts/" + post._id + "/like", { userId: userInfo._id });
         } catch (err) { }
-
         setLike(isLiked ? like - 1 : like + 1);
-        setTotalLike(isLiked ? totalLike - 1 : totalLike + 1);
-        console.log(like, totalLike);
         setIsLiked(!isLiked);
     };
 
@@ -113,7 +82,6 @@ export default function PostUI({ post }) {
     };
     const handleEditPost = async (e) => {
         e.preventDefault();
-        // console.log('Edit Post');
         const updatedPost = {
             description: desc.current.value,
         };
