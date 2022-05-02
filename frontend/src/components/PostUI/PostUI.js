@@ -29,7 +29,6 @@ export default function PostUI({ post }) {
   const [user, setUser] = useState({});
   const userId = useParams().id;
 
-//<<<<<<< HEAD
   //fetch user posts
   useEffect(() => {
     const fetchUser = async () => {
@@ -38,43 +37,20 @@ export default function PostUI({ post }) {
       }
       const res = await axios.get(`/api/users/${post.author}`);
       setUser(res.data);
-// =======
-//     //fetch user posts
-//     useEffect(() => {
-//         const fetchUser = async () => {
-//             if (userInfo._id === userId) {
-//                 setIsHost(true);
-//             }
-//             const res = await axios.get(`/api/users/${post.author}`);
-//             setUser(res.data);
-//         };
-//         fetchUser();
-//     }, [post.author]);
-
-//     //Handle like/dislike feature
-//     const [like, setLike] = useState(post.like.length);
-//     const [isLiked, setIsLiked] = useState(false);
-//     useEffect(() => {
-//         setIsLiked(post.like.includes(userInfo._id));
-//     }, [userInfo._id, post.like]);
-//     const likeHandler = () => {
-//         try {
-//             axios.put("/api/posts/" + post._id + "/like", { userId: userInfo._id });
-//           } catch (err) {}
-//         setLike(isLiked ? like - 1 : like + 1);
-//         setIsLiked(!isLiked);
-// >>>>>>> main
     };
     fetchUser();
   }, [post.author]);
 
   //Handle like/dislike feature
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.like.length);
   const [isLiked, setIsLiked] = useState(false);
-  // useEffect(() => {
-  //     setIsLiked(post.like.includes(userInfo._id));
-  // }, [userInfo._id, post.likes]);
+  useEffect(() => {
+    setIsLiked(post.like.includes(userInfo._id));
+  }, [userInfo._id, post.like]);
   const likeHandler = () => {
+    try {
+      axios.put("/api/posts/" + post._id + "/like", { userId: userInfo._id });
+    } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
