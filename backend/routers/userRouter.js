@@ -28,6 +28,8 @@ userRouter.post(
           email: user.email,
           avatar: user.avatar,
           isAdmin: user.isAdmin,
+          followers: user.followers,
+          following: user.following,
           token: generateToken(user),
         });
         return;
@@ -62,6 +64,8 @@ userRouter.post(
       age: createdUser.age,
       avatar: createdUser.avatar,
       species: createdUser.species,
+      followers: createdUser.followers,
+      following: createdUser.following,
       token: generateToken(createdUser),
     });
   })
@@ -76,6 +80,80 @@ userRouter.get(
       res.status(200).json(other);
     } catch (err) {
       res.status(500).json(err);
+    }
+  })
+);
+
+//find users using email
+userRouter.get(
+  "/searchUser/:email",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const users = await User.find({ email: req.params.email });
+      console.log(users);
+      res.send(users);
+    } catch (error) {
+      console.error(error);
+    }
+  })
+);
+
+//Add following
+userRouter.put(
+  "/following/",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      console.log("hi");
+      const user = await User.findByIdAndUpdate(req.body.id, {
+        $push: { following: req.body.followed },
+      });
+      console.log("hi2");
+      res.status(200).send({ message: "update following" });
+    } catch (error) {
+      console.error(error);
+    }
+  })
+);
+//Add follower
+userRouter.put(
+  "/followers/",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.body.id, {
+        $push: { followers: req.body.follow },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  })
+);
+
+//delete follower
+userRouter.put(
+  "/unfollowers/",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.body.id, {
+        $pull: { followers: req.body.follow },
+      });
+      console.log("hi3");
+    } catch (error) {
+      console.error(error);
+    }
+  })
+);
+
+//delete following
+userRouter.put(
+  "/unfollowing/",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.body.id, {
+        $pull: { following: req.body.followed },
+      });
+      console.log("hi4");
+    } catch (error) {
+      console.error(error);
     }
   })
 );
