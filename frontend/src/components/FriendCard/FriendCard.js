@@ -1,9 +1,50 @@
 import { Avatar, Button, Card, Grid, Typography } from "@mui/material";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import useStyles from "./Style";
 
 export default function FriendCard(props) {
   const classes = useStyles();
+
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+  const [follow, setFollow] = useState(false);
+
+  useEffect(() => {
+    setFollow(props.follow);
+  }, [props]);
+  console.log(follow);
+
+  const handleFollow = async () => {
+    //follow user
+    if (!follow) {
+      setFollow(true);
+      console.log(userInfo._id);
+      await axios.put("/api/users/following", {
+        id: userInfo._id,
+        followed: props.id,
+      });
+      await axios.put("/api/users/followers", {
+        id: props.id,
+        follow: userInfo._id,
+      });
+    }
+    //unfollow user
+    else {
+      setFollow(false);
+      console.log(userInfo._id);
+      await axios.put("/api/users/unfollowing", {
+        id: userInfo._id,
+        followed: props.id,
+      });
+      await axios.put("/api/users/followers", {
+        id: props.id,
+        follow: userInfo._id,
+      });
+    }
+  };
+
   return (
     <div>
       <Grid container justifyContent="center">
@@ -22,8 +63,12 @@ export default function FriendCard(props) {
               </Typography>
             </Grid>
             <Grid item>
-              <Button variant="contained" className={classes.button}>
-                FOLLOW
+              <Button
+                variant="contained"
+                className={classes.button}
+                onClick={handleFollow}
+              >
+                {follow ? "UNFOLLOW" : "FOLLOW"}
               </Button>
             </Grid>
           </Grid>

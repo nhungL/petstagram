@@ -1,5 +1,5 @@
 import { Grid, IconButton, TextField, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
 import useStyles from "./Style";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,6 +16,7 @@ export default function FindFriends() {
   const [id, setId] = useState("");
   const [lastname, setLastName] = useState("");
   const [avatar, setAvatar] = useState("");
+  const [follow, setFollow] = useState(false);
 
   const searchHandler = async () => {
     console.log(email);
@@ -27,28 +28,41 @@ export default function FindFriends() {
       const users = await (
         await axios.get("/api/users/searchUser/" + email)
       ).data;
-      console.log(users);
-      setSearch(true);
-      console.log(users[0]);
-      console.log(search);
-      setGotUser(true);
-      const user = users[0];
-      console.log(user._id);
-      setFirstName(user.firstname);
-      setLastName(user.lastname);
-      setId(user._id);
-      setAvatar(user.avatar);
+      if (users.length === 0) {
+        console.log("no friend");
+        setGotUser(false);
+        console.log(gotUser);
+      } else {
+        console.log(users);
+        setSearch(true);
+        console.log(users[0]);
+        console.log(search);
+        setGotUser(true);
+        const user = users[0];
+        console.log(user._id);
+        const bool = user.following.includes(user._id);
+        console.log(bool);
+        console.log(follow);
+        setFirstName(user.firstname);
+        setLastName(user.lastname);
+        setId(user._id);
+        setAvatar(user.avatar);
+        setFollow(bool);
+      }
     }
   };
 
-  const renderFriendList = (firstname, lastname, id, avatar) => {
+  const renderFriendList = (firstname, lastname, id, avatar, follow) => {
     console.log("print card");
+    console.log(follow);
+
     return (
       <FriendCard
         firstname={firstname}
         lastname={lastname}
         id={id}
         avatar={avatar}
+        follow={follow}
       ></FriendCard>
     );
   };
@@ -84,7 +98,7 @@ export default function FindFriends() {
       <div>
         {search ? (
           gotUser ? (
-            renderFriendList(firstname, lastname, id, avatar)
+            renderFriendList(firstname, lastname, id, avatar, follow)
           ) : (
             <Grid
               container
@@ -106,7 +120,7 @@ export default function FindFriends() {
             </Grid>
           )
         ) : (
-          "hello"
+          ""
         )}
       </div>
     </div>

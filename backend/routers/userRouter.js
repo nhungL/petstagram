@@ -94,6 +94,61 @@ userRouter.get(
   })
 );
 
+//Add following
+userRouter.put(
+  "/following/",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.body.id, {
+        $push: { following: req.body.followed },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  })
+);
+//Add follower
+userRouter.put(
+  "/followers/",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.body.id, {
+        $push: { followers: req.body.follow },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  })
+);
+
+//delete follower
+userRouter.put(
+  "/unfollowers/",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.body.id, {
+        $pull: { followers: req.body.follow },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  })
+);
+
+//delete following
+userRouter.put(
+  "/unfollowing/",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const user = await User.findByIdAndUpdate(req.body.id, {
+        $pull: { followers: req.body.followed },
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  })
+);
+
 userRouter.put(
   "/intro",
   expressAsyncHandler(async (req, res) => {
