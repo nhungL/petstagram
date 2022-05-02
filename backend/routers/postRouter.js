@@ -65,16 +65,17 @@ postRouter.delete("/:id", async (req, res) => {
 //like-dislike a post
 postRouter.put("/:id/like", async (req, res) => {
   try {
+    console.log("in postRouter");
     const post = await Post.findById(req.params.id);
     if (!post.like.includes(req.body.userId)) {
       await post.updateOne({ $push: { like: req.body.userId } });
-      res.status(200).send({ message: "liked your post" });
+      res.send(post.like.length);
     } else {
       await post.updateOne({ $pull: { like: req.body.userId } });
-      res.status(200).send({ message: "disliked your post" });
+      res.send(post.like.length);
     }
   } catch (err) {
-    res.status(500).send({ message: "error" });
+    res.send({ message: "error" });
   }
 });
 
@@ -119,7 +120,7 @@ postRouter.get("/profile/:id", async (req, res) => {
     const userPosts = await Post.find({ author: currentUser._id });
     // console.log(userPosts);
     res.status(200).send(userPosts);
-    return userPosts;
+    // return userPosts;
   } catch (err) {
     res.status(500).send({ message: "error" });
   }
