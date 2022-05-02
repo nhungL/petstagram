@@ -80,6 +80,20 @@ userRouter.get(
   })
 );
 
+//find users using email
+userRouter.get(
+  "/searchUser/:email",
+  expressAsyncHandler(async (req, res) => {
+    try {
+      const users = await User.find({ email: req.params.email });
+      console.log(users);
+      res.send(users);
+    } catch (error) {
+      console.error(error);
+    }
+  })
+);
+
 userRouter.put(
   "/intro",
   expressAsyncHandler(async (req, res) => {
