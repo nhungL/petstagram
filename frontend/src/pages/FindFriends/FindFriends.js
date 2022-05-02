@@ -1,4 +1,4 @@
-import { Grid, IconButton, TextField } from "@mui/material";
+import { Grid, IconButton, TextField, Typography } from "@mui/material";
 import React from "react";
 import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
 import useStyles from "./Style";
@@ -23,6 +23,9 @@ export default function FindFriends() {
             placeholder="Find Your Friends ..."
             className={classes.search}
           ></TextField>
+          <Typography variant="body2" className={classes.text}>
+            Use email to find your friends!
+          </Typography>
         </Grid>
         <Grid item>
           <IconButton className={classes.button}>

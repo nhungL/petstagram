@@ -13,5 +13,9 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: "50px",
   },
+  text: {
+    color: "gray",
+    fontSize: "15px",
+  },
 }));
 export default useStyles;
