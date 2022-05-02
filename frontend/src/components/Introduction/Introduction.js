@@ -27,6 +27,7 @@ export default function Introduction({ userId }) {
       setUser(res.data);
     };
     fetchUser();
+    console.log(user);
     setIntroContent(user.introduction);
   }, [userId, userInfo, user.introduction]);
 
