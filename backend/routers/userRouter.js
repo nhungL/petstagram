@@ -81,18 +81,12 @@ userRouter.get(
 );
 
 userRouter.put(
-  "/intro",
+  "/:id",
   expressAsyncHandler(async (req, res) => {
     try {
-      User.findByIdAndUpdate(
-        req.body.id,
-        {
-          $set: { introduction: req.body.intro },
-        },
-        (err) => {
-          console.log(err);
-        }
-      );
+      const user = await User.findById(req.params.id);
+      await user.updateOne({ $set: req.body });
+      res.status(200).send({ message: "updated your info" });
     } catch (err) {
       res.status(500).json(err);
     }

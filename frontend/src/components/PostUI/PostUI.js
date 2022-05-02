@@ -18,6 +18,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 
+
 export default function PostUI({ post }) {
     const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
@@ -40,18 +41,48 @@ export default function PostUI({ post }) {
         };
         fetchUser();
     }, [post.author]);
+    console.log(user);
 
     //Handle like/dislike feature
+    console.log(user.numLikes);
     const [like, setLike] = useState(post.like.length);
     const [isLiked, setIsLiked] = useState(false);
+    const [totalLike, setTotalLike] = useState(user.numLikes);
+    const [isTotalLikeSet, setIsTotalLikeSet] = useState(false);
     useEffect(() => {
         setIsLiked(post.like.includes(userInfo._id));
     }, [userInfo._id, post.like]);
-    const likeHandler = () => {
+    useEffect(() => {
+        setTotalLike(user.numLikes);
+        setIsTotalLikeSet(true);
+    }, [user]);
+    
+    useEffect (() => {
+        if (isTotalLikeSet) {
+            updateLike();
+        }
+    }, [isTotalLikeSet]);
+        
+    const updateLike = async (e) => {
+        try {
+            const updatedLike = {
+                numLikes: totalLike,
+            }
+            await axios.put(`/api/users/${userId}`, updatedLike);
+            setIsTotalLikeSet(false);
+        } catch (err) { }
+    };
+
+    const likeHandler = async (e) => {
+        e.preventDefault();
+        console.log(isLiked);
         try {
             axios.put("/api/posts/" + post._id + "/like", { userId: userInfo._id });
-          } catch (err) {}
+        } catch (err) { }
+
         setLike(isLiked ? like - 1 : like + 1);
+        setTotalLike(isLiked ? totalLike - 1 : totalLike + 1);
+        console.log(like, totalLike);
         setIsLiked(!isLiked);
     };
 
@@ -80,16 +111,15 @@ export default function PostUI({ post }) {
         setDialogOpen(true);
         setIsEditClicked(true);
     };
-    const handleEditPost = async(e) => {
+    const handleEditPost = async (e) => {
         e.preventDefault();
-        console.log('Edit Post');
+        // console.log('Edit Post');
         const updatedPost = {
-            author: userInfo._id,
             description: desc.current.value,
         };
         try {
             await axios.put("/api/posts/" + post._id, updatedPost);
-        } catch(err) {console.error(err);}
+        } catch (err) { console.error(err); }
         setPostContent(desc.current.value);
         setIsEditClicked(false);
         setMenuOpen(null);
@@ -99,17 +129,24 @@ export default function PostUI({ post }) {
     //Delete Post
     const [isDeleteClicked, setIsDeleteClicked] = useState(false);
     const [isDeleted, setIsDeleted] = useState(false);
-    const [openAlert, setOpenAlert] = useState(false);
     const handleDeleteCLick = () => {
         setDialogOpen(true);
         setIsDeleteClicked(true);
     };
     const handleDeletePost = async (e) => {
         e.preventDefault();
-        await axios.delete("/api/posts/" + post._id);
+        try {
+            await axios.delete("/api/posts/" + post._id);
+        } catch (err) { console.error(err); }
+        try {
+            const count = user.numPosts - 1;
+            const countPost = {
+                numPosts: count,
+            }
+            await axios.put(`/api/users/${userInfo._id}`, countPost);
+        } catch (err) { }
         setIsDeleteClicked(false);
         setIsDeleted(true);
-        setOpenAlert(true);
         setMenuOpen(null);
         window.location.reload();
     };
@@ -246,25 +283,25 @@ export default function PostUI({ post }) {
                         </div>
                     }
                 </div >
-        <div className={classes.postCenter}>
-          <span className={classes.postText} align="left">
-            {post.description}
-          </span>
-          <img className={classes.postImg} src={post.image} alt="" />
-        </div>
+                <div className={classes.postCenter}>
+                    <span className={classes.postText} align="left">
+                        {post.description}
+                    </span>
+                    <img className={classes.postImg} src={post.image} alt="" />
+                </div>
 
-        <div className={classes.postBottom}>
-          <div className={classes.postBottomLeft}>
-            <Button
-              className={classes.likeIcon}
-              startIcon={<Favorite />}
-              onClick={likeHandler}
-              style={{ color: isLiked ? "#E33A15" : "#C4C4C4" }}
-            />
-            <span className={classes.postLikeCounter}>{like}</span>
-          </div>
+                <div className={classes.postBottom}>
+                    <div className={classes.postBottomLeft}>
+                        <Button
+                            className={classes.likeIcon}
+                            startIcon={<Favorite />}
+                            onClick={likeHandler}
+                            style={{ color: isLiked ? "#E33A15" : "#C4C4C4" }}
+                        />
+                        <span className={classes.postLikeCounter}>{like}</span>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 }
