@@ -128,14 +128,14 @@ export default function Introduction({ userId }) {
               <Typography className={classes.introdata}>###</Typography>
             </Typography>
 
-            <Typography className={classes.introdata}>
+            {/* <Typography className={classes.introdata}>
               <CircleIcon
                 className={classes.circleicon}
                 sx={{ color: "#A890DB" }}
               />
               <span>Likes</span>
               <Typography className={classes.introdata}>{user.numLikes}</Typography>
-            </Typography>
+            </Typography> */}
           </Typography>
         </div>
       </div>
