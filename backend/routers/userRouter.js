@@ -48,6 +48,7 @@ userRouter.post(
       petname: req.body.petname,
       age: req.body.age,
       species: req.body.species,
+      avatar: req.body.avatar,
     });
     const createdUser = await user.save();
     res.send({
@@ -59,6 +60,7 @@ userRouter.post(
       avatar: createdUser.avatar,
       petname: createdUser.petname,
       age: createdUser.age,
+      avatar: createdUser.avatar,
       species: createdUser.species,
       token: generateToken(createdUser),
     });

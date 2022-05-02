@@ -10,8 +10,6 @@ import AboutUsPage from "./pages/AboutUsPage/AboutUsPage";
 import SettingPage from "./pages/SettingPage/SettingPage";
 import MapPage from "./pages/MapPage/MapPage";
 import SignInPage from "./pages/SignInPage/SignInPage";
-import { useSelector } from "react-redux";
-
 
 function App() {
   // const userSignin = useSelector((state) => state.userSignin);

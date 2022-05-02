@@ -42,12 +42,15 @@ export default function PostUI({ post }) {
   }, [post.author]);
 
   //Handle like/dislike feature
-  const [like, setLike] = useState(post.like);
+  const [like, setLike] = useState(post.like.length);
   const [isLiked, setIsLiked] = useState(false);
-  // useEffect(() => {
-  //     setIsLiked(post.like.includes(userInfo._id));
-  // }, [userInfo._id, post.likes]);
+  useEffect(() => {
+    setIsLiked(post.like.includes(userInfo._id));
+  }, [userInfo._id, post.like]);
   const likeHandler = () => {
+    try {
+      axios.put("/api/posts/" + post._id + "/like", { userId: userInfo._id });
+    } catch (err) {}
     setLike(isLiked ? like - 1 : like + 1);
     setIsLiked(!isLiked);
   };
