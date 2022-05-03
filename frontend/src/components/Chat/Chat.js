@@ -1,14 +1,31 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useStyles from "./Style";
-import { Link, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Friend from "../Friend/Friend";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
-export default function Chat() {
+export default function Chat(userFollowings) {
   const classes = useStyles();
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+  const [user, setUser] = useState();
+
+  console.log(userFollowings);
+
+  // useEffect(() => {
+  //   console.log("Out fetch user");
+  //   const fetchUser = async () => {
+  //     console.log("In fetch user");
+  //     // const res = await axios.get("/api/users/" + userId.userId);
+  //     // setUser(res.data);
+  //   };
+  //   fetchUser();
+  //   console.log(user);
+  // }, []);
+
+  console.log(user);
 
   return (
     <div className={classes.chat}>

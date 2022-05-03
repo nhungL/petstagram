@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Followers from "../../components/Followers/Followers";
 
 export default function ProfilePage() {
   const classes = useStyles();
@@ -27,16 +28,17 @@ export default function ProfilePage() {
 
   useEffect(() => {
     const fetchUser = async () => {
+      setIsHost(false);
       if (userInfo._id === userId) {
         setIsHost(true);
       }
       const res = await axios.get(`/api/users/${userId}`);
       setUser(res.data);
     };
+
     fetchUser();
   }, [userId]);
 
-  console.log(isHost);
   return (
     <div className={classes.background}>
       <AppBarContent userId={userId} />
@@ -63,7 +65,8 @@ export default function ProfilePage() {
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Chat />
+            <Chat userFollowing={user.following} />
+            <Followers />
           </Grid>
         </Grid>
       </Container>

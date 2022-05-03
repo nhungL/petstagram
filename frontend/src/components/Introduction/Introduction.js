@@ -21,6 +21,7 @@ export default function Introduction({ userId }) {
   const intro = useRef();
   useEffect(() => {
     const fetchUser = async () => {
+      setIsHost(false);
       if (userInfo._id === userId) {
         setIsHost(true);
       }
@@ -119,6 +120,16 @@ export default function Introduction({ userId }) {
               />
               <span>Join Since</span>
               <Typography className={classes.introdata}>{year}</Typography>
+            </Typography>
+            <Typography className={classes.introdata}>
+              <CircleIcon
+                className={classes.circleicon}
+                sx={{ color: "#A890DB" }}
+              />
+              <span>My Email</span>
+              <Typography className={classes.introdata}>
+                {user.email}
+              </Typography>
             </Typography>
             <Typography className={classes.introdata}>
               <CircleIcon

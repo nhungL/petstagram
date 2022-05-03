@@ -45,56 +45,6 @@ const SettingPage = () => {
             alignContent="center"
             style={{ maxWidth: "None" }}
           >
-            <Grid item style={{ marginTop: "20px" }} className={classes.item}>
-              <Typography>
-                <ManageAccountsIcon className={classes.iconSetting} />
-                <Divider />
-                <Button
-                  className={classes.button}
-                  onClick={() => setShowAccount((prev) => !prev)}
-                >
-                  Account
-                </Button>
-                {account && <AccountPage />}
-              </Typography>
-            </Grid>
-            <Grid item className={classes.item}>
-              <Typography>
-                <HowToReg className={classes.iconSetting} />
-                <Divider />
-                <Button
-                  className={classes.button}
-                  onClick={() => setShowFollowing((prev) => !prev)}
-                >
-                  Following
-                </Button>
-                {following && <FriendSetting />}
-              </Typography>
-            </Grid>
-            <Grid item className={classes.item}>
-              <Typography>
-                <PeopleIcon className={classes.iconSetting} />
-
-                <Divider />
-                <Button
-                  className={classes.button}
-                  onClick={() => setShowFollowers((prev) => !prev)}
-                >
-                  Followers
-                </Button>
-                {followers && <FriendSetting />}
-              </Typography>
-            </Grid>
-            {/* <Grid item className={classes.item}>
-                            <Typography>
-                                <Brightness4Icon className={classes.iconSetting} />
-                                <Divider />
-                                <Button className={classes.button} onClick={() => setShowDisplay(prev => !prev)}>Display Mode</Button>
-                                {display &&
-                                    <DisplayMode />
-                                }
-                            </Typography>
-                        </Grid> */}
             <Grid item className={classes.item}>
               <Typography>
                 <HelpIcon className={classes.iconSetting} />
@@ -105,7 +55,7 @@ const SettingPage = () => {
                 >
                   Help
                 </Button>
-                {help && <Help />}
+                <Help />
               </Typography>
             </Grid>
           </Grid>
