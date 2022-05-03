@@ -29,8 +29,8 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 12,
   },
   container: {
-    width: "100%",
-    height: "100%",
+    width: "100vw",
+    height: "100vh",
   },
   chat: {
     backgroundColor: "#FFFFFF",
