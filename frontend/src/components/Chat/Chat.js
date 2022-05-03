@@ -5,14 +5,12 @@ import Friend from "../Friend/Friend";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-export default function Chat(userFollowings) {
+export default function Chat(props) {
   const classes = useStyles();
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const [user, setUser] = useState();
-
-  console.log(userFollowings);
 
   // useEffect(() => {
   //   console.log("Out fetch user");
@@ -25,7 +23,7 @@ export default function Chat(userFollowings) {
   //   console.log(user);
   // }, []);
 
-  console.log(user);
+  console.log(props.following);
 
   return (
     <div className={classes.chat}>
@@ -36,7 +34,7 @@ export default function Chat(userFollowings) {
         <hr style={{ width: "90%" }} />
 
         <ul className={classes.friendList}>
-          {userInfo.following.map((u) => (
+          {props.following.map((u) => (
             <Friend key={u.id} user={u} />
           ))}
         </ul>

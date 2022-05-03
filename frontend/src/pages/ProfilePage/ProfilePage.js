@@ -17,25 +17,26 @@ export default function ProfilePage() {
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
   // console.log(userInfo._id);
 
   const [user, setUser] = useState({});
   const userId = useParams().id;
   // console.log(userId);
-
   const [isHost, setIsHost] = useState(false);
-  const year = new Date(user.createdAt).getFullYear();
+  const [following, setFollowing] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
+      console.log("here");
       setIsHost(false);
       if (userInfo._id === userId) {
         setIsHost(true);
       }
       const res = await axios.get(`/api/users/${userId}`);
       setUser(res.data);
+      setFollowing(res.data.following);
     };
-
     fetchUser();
   }, [userId]);
 
@@ -65,7 +66,7 @@ export default function ProfilePage() {
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Chat userFollowing={user.following} />
+            <Chat following={following} />
             <Followers />
           </Grid>
         </Grid>
