@@ -2,7 +2,6 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import Post from "../models/postModel.js";
 import User from "../models/userModel.js";
-import { Posts } from "../postData.js";
 import { v2 as cloudinary } from "cloudinary";
 
 const postRouter = express.Router();
@@ -12,13 +11,6 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-
-// postRouter.get("/seed",
-//     expressAsyncHandler(async (req, res) => {
-//         const createdPosts = await Post.insertMany(Posts);
-//         res.send({createdPosts});
-//     })
-// );
 
 //create a post
 postRouter.post("/", async (req, res) => {
