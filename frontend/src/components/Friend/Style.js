@@ -7,8 +7,8 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: "15px",
   },
   friendImg: {
-    width: "32px",
-    height: "32px",
+    width: "50px",
+    height: "50px",
     borderRadius: "50%",
     objectFit: "cover",
     marginRight: "10px",
@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: "12px",
     margin: "5px 0",
   },
-  
+
   //for chat
   paper: {
     width: "80vw",

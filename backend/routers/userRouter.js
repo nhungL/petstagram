@@ -78,6 +78,7 @@ userRouter.get(
       const user = await User.findById(req.params.id);
       const { password, ...other } = user._doc;
       res.status(200).json(other);
+      //console.log(user);
     } catch (err) {
       res.status(500).json(err);
     }
