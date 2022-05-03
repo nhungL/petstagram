@@ -5,7 +5,7 @@ import Friend from "../Friend/Friend";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
-export default function Chat(props) {
+export default function Following(props) {
   const classes = useStyles();
 
   const userSignin = useSelector((state) => state.userSignin);
@@ -23,7 +23,7 @@ export default function Chat(props) {
   //   console.log(user);
   // }, []);
 
-  console.log(props.following);
+  //console.log(props.following);
 
   return (
     <div className={classes.chat}>

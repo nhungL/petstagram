@@ -1,14 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import useStyles from "./Style";
-import { Link, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import Friend from "../Friend/Friend";
-import { useSelector } from "react-redux";
 
-export default function Followers() {
+export default function Followers(props) {
   const classes = useStyles();
-
-  const userSignin = useSelector((state) => state.userSignin);
-  const { userInfo } = userSignin;
 
   return (
     <div className={classes.chat}>
@@ -19,7 +15,7 @@ export default function Followers() {
         <hr style={{ width: "90%" }} />
 
         <ul className={classes.friendList}>
-          {userInfo.followers.map((u) => (
+          {props.followers.map((u) => (
             <Friend key={u.id} user={u} />
           ))}
         </ul>

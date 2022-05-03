@@ -2,7 +2,6 @@ import React from "react";
 import useStyles from "./Style";
 import { Container, Avatar, Grid } from "@mui/material";
 import Introduction from "../../components/Introduction/Introduction";
-import Chat from "../../components/Chat/Chat";
 import Post from "../../components/Post/Post";
 import Feed from "../../components/Feed/Feed";
 import AppBarContent from "../../components/ResponsiveAppBar/AppBarContent";
@@ -11,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Followers from "../../components/Followers/Followers";
+import Following from "../../components/Following/Following";
 
 export default function ProfilePage() {
   const classes = useStyles();
@@ -18,13 +18,12 @@ export default function ProfilePage() {
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
 
-  // console.log(userInfo._id);
-
   const [user, setUser] = useState({});
   const userId = useParams().id;
   // console.log(userId);
   const [isHost, setIsHost] = useState(false);
   const [following, setFollowing] = useState([]);
+  const [followers, setFollowers] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -36,6 +35,7 @@ export default function ProfilePage() {
       const res = await axios.get(`/api/users/${userId}`);
       setUser(res.data);
       setFollowing(res.data.following);
+      setFollowers(res.data.followers);
     };
     fetchUser();
   }, [userId]);
@@ -66,8 +66,8 @@ export default function ProfilePage() {
           </Grid>
 
           <Grid item xs={12} md={3}>
-            <Chat following={following} />
-            <Followers />
+            <Following following={following} />
+            <Followers followers={followers} />
           </Grid>
         </Grid>
       </Container>
