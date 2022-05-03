@@ -72,21 +72,6 @@ export default function AppBarContent() {
               </Button>
             </Link>
 
-            <Link to="/about-us" className={classes.link}>
-              <Button
-                key="aboutus"
-                sx={{
-                  my: 2,
-                  marginLeft: "20px",
-                  fontWeight: "bold",
-                  color: "#FFB2A6",
-                  display: "block",
-                }}
-              >
-                About Us
-              </Button>
-            </Link>
-
             <Link to="/find-friends" className={classes.link}>
               <Button
                 key="findfriends"
@@ -99,6 +84,20 @@ export default function AppBarContent() {
                 }}
               >
                 Find Friends
+              </Button>
+            </Link>
+            <Link to="/about-us" className={classes.link}>
+              <Button
+                key="aboutus"
+                sx={{
+                  my: 2,
+                  marginLeft: "20px",
+                  fontWeight: "bold",
+                  color: "#FFB2A6",
+                  display: "block",
+                }}
+              >
+                About Us
               </Button>
             </Link>
           </Box>

@@ -16,6 +16,7 @@ export default function Introduction({ userId }) {
   const [showBioInput, setShowBioInput] = useState(false);
   const [introContent, setIntroContent] = useState("");
   const [isHost, setIsHost] = useState(false);
+  const year = new Date(user.createdAt).getFullYear();
 
   const intro = useRef();
   useEffect(() => {
@@ -28,6 +29,7 @@ export default function Introduction({ userId }) {
     };
     fetchUser();
     console.log(user);
+
     setIntroContent(user.introduction);
   }, [userId, userInfo, user.introduction]);
 
@@ -115,8 +117,16 @@ export default function Introduction({ userId }) {
                 className={classes.circleicon}
                 sx={{ color: "#A890DB" }}
               />
-              <span>Posts</span>
-              <Typography className={classes.introdata}>{user.numPosts}</Typography>
+              <span>Join Since</span>
+              <Typography className={classes.introdata}>{year}</Typography>
+            </Typography>
+            <Typography className={classes.introdata}>
+              <CircleIcon
+                className={classes.circleicon}
+                sx={{ color: "#A890DB" }}
+              />
+              <span>My Age</span>
+              <Typography className={classes.introdata}>{user.age}</Typography>
             </Typography>
 
             <Typography className={classes.introdata}>
@@ -124,8 +134,20 @@ export default function Introduction({ userId }) {
                 className={classes.circleicon}
                 sx={{ color: "#A890DB" }}
               />
-              <span>Friends</span>
-              <Typography className={classes.introdata}>###</Typography>
+              <span>My Owner</span>
+              <Typography className={classes.introdata}>
+                {user.firstname} {user.lastname}
+              </Typography>
+            </Typography>
+            <Typography className={classes.introdata}>
+              <CircleIcon
+                className={classes.circleicon}
+                sx={{ color: "#A890DB" }}
+              />
+              <span>Posts</span>
+              <Typography className={classes.introdata}>
+                {user.numPosts}
+              </Typography>
             </Typography>
           </Typography>
         </div>

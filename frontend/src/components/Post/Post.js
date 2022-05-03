@@ -129,9 +129,9 @@ export default function Post() {
       // console.log("sent");
       await axios.post("/api/posts", newPost);
       const count = user.numPosts + 1;
-      const countPost = { 
-        numPosts: count, 
-      }
+      const countPost = {
+        numPosts: count,
+      };
       await axios.put(`/api/users/${userInfo._id}`, countPost);
       window.location.reload();
     } catch (err) {}
@@ -179,8 +179,8 @@ export default function Post() {
                     <Box
                       component="img"
                       sx={{
-                        height: '100%',
-                        width: '100%',
+                        height: "100%",
+                        width: "100%",
                       }}
                       src={postImage}
                     />
@@ -193,24 +193,6 @@ export default function Post() {
                     </IconButton>
                   </div>
                 )}
-                {/* {isVideoSelected && (
-                  <div className={classes.postImg}>
-                    <Box
-                      component="img"
-                      // sx={{
-                      //   height: 300,
-                      // }}
-                      src={postVideo}
-                    />
-                    <IconButton
-                      aria-label="upload picture"
-                      component="span"
-                      onClick={deleteVideo}
-                    >
-                      <Close style={{ color: "#C4C4C4" }} />
-                    </IconButton>
-                  </div>
-                )} */}
               </div>
             </div>
 
