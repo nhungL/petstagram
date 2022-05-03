@@ -2,7 +2,8 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles((theme) => ({
   background: {
-    backgroundColor: "#FFB2A6",
+    backgroundColor: "#FFE4DD",
+    justifyContent: "center",
   },
   container: {
     width: "100vw",
