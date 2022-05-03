@@ -12,13 +12,6 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-// postRouter.get("/seed",
-//     expressAsyncHandler(async (req, res) => {
-//         const createdPosts = await Post.insertMany(Posts);
-//         res.send({createdPosts});
-//     })
-// );
-
 //create a post
 postRouter.post("/", async (req, res) => {
   // console.log(req.body)
