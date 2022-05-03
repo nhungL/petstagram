@@ -126,14 +126,12 @@ export default function PostUI({ post }) {
                 < div className={classes.postTop} >
                     <div className={classes.postTopLeft}>
                         <Link to={`/profile/${post.author}`} style={{ textDecoration: "None" }}>
-                            <Avatar className={classes.postProfileImg}>
-                                {user.avatar}
-                            </Avatar>
+                            <Avatar src={user.avatar} className={classes.postProfileImg}/>
                         </Link>
                         <div className={classes.postTopLeftText}>
                             <Link to={`/profile/${post.author}`} style={{ textDecoration: "None" }}>
                                 <span className={classes.postUsername}>
-                                    {user.firstname} {user.lastname}
+                                    {user.petname}
                                 </span>
                             </Link>
                             <span className={classes.postDate}>{format(post.createdAt)}</span>
