@@ -11,8 +11,12 @@ export default function SignInPage() {
         <Grid item sm={12} md={6}>
           <SignIn />
         </Grid>
-        <Grid item className={classes.background} sm={12} md={6}>
-          <div></div>
+        <Grid item sm={12} md={6} className={classes.background}>
+          <img
+            src="https://res.cloudinary.com/petstagram/image/upload/v1651562112/Pets_Public/Petstagram_jfbdgk_ohxwtk.png"
+            alt="signin"
+            style={{ marginTop: "60px" }}
+          />
         </Grid>
       </Grid>
     </div>
