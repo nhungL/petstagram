@@ -14,8 +14,6 @@ cloudinary.config({
 
 //create a post
 postRouter.post("/", async (req, res) => {
-  // console.log(req.body)
-  // console.log(req)
   const newPost = new Post(req.body);
   try {
     const savedPost = await newPost.save();
@@ -38,7 +36,6 @@ postRouter.put("/:id", async (req, res) => {
 
 //delete a post
 postRouter.delete("/:id", async (req, res) => {
-  // console.log(req.params);
   try {
     if (req.params.id) {
       const post = await Post.findById(req.params.id);
@@ -110,9 +107,7 @@ postRouter.get("/profile/:id", async (req, res) => {
   try {
     const currentUser = await User.findById(req.params.id);
     const userPosts = await Post.find({ author: currentUser._id });
-    // console.log(userPosts);
     res.status(200).send(userPosts);
-    // return userPosts;
   } catch (err) {
     res.status(500).send({ message: "error" });
   }

@@ -9,12 +9,10 @@ export default function Friend({ user }) {
   const [avatar, setAvatar] = useState("");
   const [firstname, setFirstname] = useState("");
   const [lastname, setLastname] = useState("");
-  console.log(user);
 
   useEffect(() => {
     const findUser = async () => {
       const userFound = await (await axios.get("/api/users/" + user)).data;
-      console.log(userFound);
       setAvatar(userFound.avatar);
       setFirstname(userFound.firstname);
       setLastname(userFound.lastname);

@@ -20,14 +20,12 @@ export default function ProfilePage() {
 
   const [user, setUser] = useState({});
   const userId = useParams().id;
-  // console.log(userId);
   const [isHost, setIsHost] = useState(false);
   const [following, setFollowing] = useState([]);
   const [followers, setFollowers] = useState([]);
 
   useEffect(() => {
     const fetchUser = async () => {
-      console.log("here");
       setIsHost(false);
       if (userInfo._id === userId) {
         setIsHost(true);
@@ -38,7 +36,7 @@ export default function ProfilePage() {
       setFollowers(res.data.followers);
     };
     fetchUser();
-  }, [userId]);
+  }, [userId, userInfo._id]);
 
   return (
     <div className={classes.background}>

@@ -36,8 +36,6 @@ const upload = multer({ storage: storage });
 
 app.post("/api/upload", upload.single("imageUpload"), function (req, res) {
   try {
-    // console.log("in upload backend");
-    // console.log(req.file);
     const filePath = req.file.path;
     const imageId = req.file.filename;
     return res.status(200).json({path : filePath, imageid: imageId});

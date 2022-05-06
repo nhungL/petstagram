@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import useStyles from "./Style";
-import { Typography, TextField, Button, Grid } from "@mui/material";
+import { Typography, TextField, Button } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import { useSelector } from "react-redux";
 import axios from "axios";
@@ -29,7 +29,6 @@ export default function Introduction({ userId }) {
       setUser(res.data);
     };
     fetchUser();
-    console.log(user);
 
     setIntroContent(user.introduction);
   }, [userId, userInfo, user.introduction]);
@@ -40,7 +39,6 @@ export default function Introduction({ userId }) {
       _id: userId,
       introduction: intro.current.value,
     };
-    console.log(updatedIntro);
     try {
       await axios.put(`/api/users/${userId}`, updatedIntro);
     } catch (err) {

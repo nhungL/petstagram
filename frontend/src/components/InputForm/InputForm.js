@@ -21,7 +21,6 @@ export default function InputForm() {
   const [age, setAge] = useState(0);
   const [petName, setpetName] = useState("");
   const [species, setSpecies] = useState("");
-  const [avatar, setAvatar] = useState("");
   const { state } = useLocation();
   const { email, password } = state;
 
@@ -63,9 +62,7 @@ export default function InputForm() {
 
         try {
           const ava = await (await axios.post("/api/upload", data)).data;
-          console.log(ava);
           avatarr = ava.path;
-          console.log(avatarr);
         } catch (err) {
           console.log(err);
         }
@@ -90,7 +87,7 @@ export default function InputForm() {
     if (userInfo) {
       navigate("/home");
     }
-  }, [userInfo]);
+  }, [navigate, userInfo]);
 
   return (
     <div>

@@ -19,7 +19,6 @@ export default function Feed({ userId }) {
     };
     fetchPosts();
   }, [userId]);
-  // console.log(posts);
 
   const classes = useStyles();
   return (

@@ -23,7 +23,6 @@ export default function FindFriends() {
   const { userInfo } = userSignin;
 
   const searchHandler = async () => {
-    console.log(email);
     if (email === "") {
       setSearch(true);
     } else {
@@ -33,16 +32,11 @@ export default function FindFriends() {
       if (users.length === 0) {
         setGotUser(false);
       } else {
-        console.log(users);
         setSearch(true);
         setGotUser(true);
         const user = users[0];
-        console.log(user._id);
-        console.log(userInfo);
         const bool = userInfo.following.includes(user._id);
-        console.log(bool);
 
-        console.log(follow);
         setFirstName(user.firstname);
         setLastName(user.lastname);
         setId(user._id);

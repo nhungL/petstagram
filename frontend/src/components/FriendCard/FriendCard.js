@@ -14,7 +14,6 @@ export default function FriendCard(props) {
   useEffect(() => {
     setFollow(props.follow);
   }, [props]);
-  console.log(follow);
 
   const handleFollow = async () => {
     //follow user

@@ -69,7 +69,6 @@ userRouter.get(
       const user = await User.findById(req.params.id);
       const { password, ...other } = user._doc;
       res.status(200).json(other);
-      //console.log(user);
     } catch (err) {
       res.status(500).json(err);
     }
@@ -82,7 +81,6 @@ userRouter.get(
   expressAsyncHandler(async (req, res) => {
     try {
       const users = await User.find({ email: req.params.email });
-      console.log(users);
       res.send(users);
     } catch (error) {
       console.error(error);
@@ -95,11 +93,9 @@ userRouter.put(
   "/following/",
   expressAsyncHandler(async (req, res) => {
     try {
-      console.log("hi");
       const user = await User.findByIdAndUpdate(req.body.id, {
         $push: { following: req.body.followed },
       });
-      console.log("hi2");
       res.status(200).send({ message: "update following" });
     } catch (error) {
       console.error(error);
@@ -128,7 +124,6 @@ userRouter.put(
       const user = await User.findByIdAndUpdate(req.body.id, {
         $pull: { followers: req.body.follow },
       });
-      console.log("hi3");
     } catch (error) {
       console.error(error);
     }
@@ -143,7 +138,6 @@ userRouter.put(
       const user = await User.findByIdAndUpdate(req.body.id, {
         $pull: { following: req.body.followed },
       });
-      console.log("hi4");
     } catch (error) {
       console.error(error);
     }

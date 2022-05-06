@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import Close from "@mui/icons-material/Close";
 import PhotoCamera from "@mui/icons-material/PhotoCamera";
-import VideoLibraryIcon from "@mui/icons-material/VideoLibrary";
 import { styled } from "@mui/styles";
 import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
@@ -36,12 +35,9 @@ export default function Post() {
   const desc = useRef();
   const [postContent, setPostContent] = useState("");
   const [postImage, setPostImage] = useState();
-  const [postVideo, setPostVideo] = useState();
   const [file, setFile] = useState(null);
-  const [error, setError] = useState(false);
 
   const [isImageSelected, setIsImageSelected] = useState(false);
-  const [isVideoSelected, setIsVideoSelected] = useState(false);
   const [promptText, setPromptText] = useState(
     "Hi, " + userInfo.firstname + "! How's your day?"
   );
@@ -52,34 +48,12 @@ export default function Post() {
     setIsImageSelected(true);
     setPromptText("Say something about this photo...");
     const file = event.target.files[0];
-    console.log("go to uploadImage");
     setFile(file);
     const reader = new FileReader();
-    console.log(reader.result);
     reader.addEventListener(
       "load",
       function () {
         setPostImage(reader.result);
-      },
-      false
-    );
-    if (file) {
-      reader.readAsDataURL(file);
-    }
-  };
-  //Upload Video
-  const uploadVideo = async (event) => {
-    setIsVideoSelected(true);
-    setPromptText("Say something about this video...");
-    const file = event.target.files[0];
-    console.log("go to uploadVideo");
-    setFile(file);
-    const reader = new FileReader();
-    console.log(reader.result);
-    reader.addEventListener(
-      "load",
-      function () {
-        setPostVideo(reader.result);
       },
       false
     );
@@ -95,13 +69,6 @@ export default function Post() {
     setPostImage("");
     setPromptText("Hi, " + userInfo.firstname + "! How's your day?");
   };
-  //Delete Video
-  const deleteVideo = () => {
-    setIsVideoSelected(false);
-    setFile(null);
-    setPostVideo("");
-    setPromptText("Hi, " + userInfo.firstname + "! How's your day?");
-  };
 
   //Submit post to DB
   const submitPost = async (e) => {
@@ -110,14 +77,12 @@ export default function Post() {
       author: userInfo._id,
       description: desc.current.value,
     };
-    // console.log(file);
     const data = new FormData();
     if (file) {
       const fileName = Date.now() + file.name;
       data.append("name", fileName);
       data.append("imageUpload", file);
       try {
-        // console.log("ok");
         const res = await (await axios.post("/api/upload", data)).data;
         newPost.image = res.path;
         newPost.imageId = res.imageid;
@@ -126,7 +91,6 @@ export default function Post() {
       }
     }
     try {
-      // console.log("sent");
       await axios.post("/api/posts", newPost);
       const count = user.numPosts + 1;
       const countPost = {
@@ -216,23 +180,6 @@ export default function Post() {
                     </IconButton>
                   </label>
 
-                  {/* <label htmlFor="video-button-file">
-                    <Input
-                      accept="video/mp4,video/x-m4v,video/*"
-                      id="video-button-file"
-                      //multiple
-                      type="file"
-                      onChange={uploadVideo}
-                    />
-                    <IconButton
-                      aria-label="upload picture"
-                      component="span"
-                      className={classes.uploadvideobutton}
-                      style={{ ml: "20px" }}
-                    >
-                      <VideoLibraryIcon />
-                    </IconButton>
-                  </label> */}
                 </Stack>
               </Grid>
               <Grid>
